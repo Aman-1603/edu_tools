@@ -9,8 +9,6 @@ class Login_page extends StatefulWidget {
   State<Login_page> createState() => _Login_pageState();
 }
 
-
-
 class _Login_pageState extends State<Login_page> {
 
   //Now grabbing irebase instance
@@ -19,16 +17,17 @@ class _Login_pageState extends State<Login_page> {
   //Now it can directly talk to firebase
 
 
-  String _email, _password;
-  checkAuthentification() async
-  {
-    _auth.onAuthStateChanged.listen(user){
-      if(user!= null){
-        Navigator.push(context, MaterialPageRoute(
-            builder: (context)=>Homepage()));
-      }
-    }
-  }
+  // String _email, _password;
+  // checkAuthentification() async
+  // {
+  //   _auth.onAuthStateChanged.listen(user){
+  //     if(user!= null){
+  //       Navigator.push(context, MaterialPageRoute(
+  //           builder: (context)=>Homepage()));
+  //     }
+  //   }
+  // }
+
 
 
   @override
