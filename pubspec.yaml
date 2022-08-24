@@ -40,6 +40,8 @@ dependencies:
   firebase_core: ^1.21.0
   firebase_auth: ^3.6.4
   flutter_native_splash: ^1.2.1
+  fluttertoast: ^8.0.9
+
 
   #added
 
