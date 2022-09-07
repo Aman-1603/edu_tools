@@ -1,4 +1,5 @@
 import 'package:edu_tools/Home.dart';
+import 'package:edu_tools/lobby_page.dart';
 import 'package:edu_tools/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -122,8 +123,10 @@ class _LoginPageState extends State<LoginPage> {
                   children: <Widget>[
                     SizedBox(
                         height: 200,
+
                         child: Image.asset(
-                          "assets/images/auth/login.png",
+                          "assets/images/auth/login_image.png",
+                          height: 500,
                           fit: BoxFit.contain,
                         )),
                     SizedBox(height: 45),
@@ -173,7 +176,7 @@ class _LoginPageState extends State<LoginPage> {
             .then((uid) => {
           Fluttertoast.showToast(msg: "Login Successful"),
           Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => HomeScreen())),
+              MaterialPageRoute(builder: (context) => Loby_page())),
         });
       } on FirebaseAuthException catch (error) {
         switch (error.code) {

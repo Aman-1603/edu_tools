@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../../app_styles.dart';
 import '../../size_configs.dart';
 import '../../validators.dart';
@@ -15,6 +17,14 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final _signUpKey = GlobalKey<FormState>();
 
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  late String _name, _email, _password;
+
+  // string for displaying the error Message
+  String? errorMessage;
+
   void onSubmit() {
     _signUpKey.currentState!.validate();
   }
@@ -25,6 +35,20 @@ class _SignUpPageState extends State<SignUpPage> {
     FocusNode(),
   ];
 
+
+  //added
+
+  checkAuthentication() async {
+    _auth.authStateChanges().listen((user) async {
+      if (user != null) {
+        Navigator.pushReplacementNamed(context, "/");
+      }
+    });
+  }
+
+  //up to these
+
+
   @override
   void initState() {
     super.initState();
@@ -34,6 +58,50 @@ class _SignUpPageState extends State<SignUpPage> {
       });
     });
   }
+
+  //added
+
+
+  signUp() async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState?.save();
+
+      try {
+        UserCredential user = await _auth.createUserWithEmailAndPassword(
+            email: _email, password: _password);
+        if (user != null) {
+          // UserUpdateInfo updateuser = UserUpdateInfo();
+          // updateuser.displayName = _name;
+          //  user.updateProfile(updateuser);
+          await _auth.currentUser?.updateProfile(displayName: _name);
+          // await Navigator.pushReplacementNamed(context,"/") ;
+
+        }
+      } catch (e) {
+        Fluttertoast.showToast(msg: errorMessage!);
+      }
+    }
+  }
+
+  showError(String errormessage) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('ERROR'),
+            content: Text(errormessage),
+            actions: <Widget>[
+              FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'))
+            ],
+          );
+        });
+  }
+
+  //up to these
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +116,9 @@ class _SignUpPageState extends State<SignUpPage> {
               children: [
                 Container(
                   child:
-                      Image.asset('assets/images/auth/signup_illustration.png'),
+
+                      Image.asset('assets/images/auth/login_image.png'),
+                      width: double.infinity,
                 ),
                 SizedBox(
                   height: height * 2,

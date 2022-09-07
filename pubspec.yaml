@@ -35,12 +35,17 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-
+  country_code_picker: ^1.7.0
+  pull_to_refresh: ^1.6.3
   flutter_signin_button: ^2.0.0
   firebase_core: ^1.21.0
   firebase_auth: ^3.6.4
   flutter_native_splash: ^1.2.1
   fluttertoast: ^8.0.9
+
+#  added
+
+
 
 
   #added
@@ -88,6 +93,8 @@ flutter:
     - assets/images/
     - assets/images/auth/
     - assets/images/auth/login.png
+    - assets/images/auth/home_login_signup.png
+    - assets/images/auth/login_image.png
   # do a hot restart after adding new image directory
   fonts:
     - family: Klasik
