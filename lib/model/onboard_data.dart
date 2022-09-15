@@ -14,15 +14,15 @@ List<OnBoarding> onboardingContents = [
     image: 'assets/images/onboarding_image_1.png',
   ),
   OnBoarding(
-    title: 'Create new habits easily',
+    title: 'Create your learning habits easily',
     image: 'assets/images/onboarding_image_2.png',
   ),
   OnBoarding(
-    title: 'Keep track of your progress',
+    title: 'Keep track of your progress with edutools',
     image: 'assets/images/onboarding_image_3.png',
   ),
   OnBoarding(
-    title: 'Join a supportive community',
+    title: 'Join a supportive GNU Community',
     image: 'assets/images/onboarding_image_4.png',
   ),
 ];

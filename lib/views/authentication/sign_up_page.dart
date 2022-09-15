@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../../app_styles.dart';
+import '../../lobby_page.dart';
 import '../../size_configs.dart';
 import '../../validators.dart';
 import '../pages.dart';
@@ -35,20 +36,6 @@ class _SignUpPageState extends State<SignUpPage> {
     FocusNode(),
   ];
 
-
-  //added
-
-  checkAuthentication() async {
-    _auth.authStateChanges().listen((user) async {
-      if (user != null) {
-        Navigator.pushReplacementNamed(context, "/");
-      }
-    });
-  }
-
-  //up to these
-
-
   @override
   void initState() {
     super.initState();
@@ -62,49 +49,11 @@ class _SignUpPageState extends State<SignUpPage> {
   //added
 
 
-  signUp() async {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState?.save();
 
-      try {
-        UserCredential user = await _auth.createUserWithEmailAndPassword(
-            email: _email, password: _password);
-        if (user != null) {
-          // UserUpdateInfo updateuser = UserUpdateInfo();
-          // updateuser.displayName = _name;
-          //  user.updateProfile(updateuser);
-          await _auth.currentUser?.updateProfile(displayName: _name);
-          // await Navigator.pushReplacementNamed(context,"/") ;
-
-        }
-      } catch (e) {
-        Fluttertoast.showToast(msg: errorMessage!);
-      }
-    }
-  }
-
-  showError(String errormessage) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('ERROR'),
-            content: Text(errormessage),
-            actions: <Widget>[
-              FlatButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('OK'))
-            ],
-          );
-        });
-  }
-
-  //up to these
 
   @override
   Widget build(BuildContext context) {
+    String email = '', pass = '';
     SizeConfig().init(context);
     double height = SizeConfig.blockSizeV!;
     return Scaffold(
@@ -134,35 +83,58 @@ class _SignUpPageState extends State<SignUpPage> {
                   key: _signUpKey,
                   child: Column(
                     children: [
-                      MyTextFormField(
-                        fillColor: Colors.white,
-                        hint: 'Name',
-                        icon: Icons.person,
-                        inputAction: TextInputAction.next,
-                        inputType: TextInputType.name,
-                        focusNode: _signUpFocusNodes[0],
-                        validator: nameValidator,
+                      // MyTextFormField(
+                      //   fillColor: Colors.white,
+                      //   hint: 'Name',
+                      //   icon: Icons.person,
+                      //   inputAction: TextInputAction.next,
+                      //   inputType: TextInputType.name,
+                      //   focusNode: _signUpFocusNodes[0],
+                      //   validator: nameValidator,
+                      // ),
+                      TextField(
+
+                        onChanged: (value) {
+                          email = value;
+                        },
+                        decoration: InputDecoration(hintText: 'Email'),
+
                       ),
-                      MyTextFormField(
-                          hint: 'Email',
-                          icon: Icons.email_outlined,
-                          fillColor: Colors.white,
-                          inputType: TextInputType.emailAddress,
-                          inputAction: TextInputAction.next,
-                          focusNode: _signUpFocusNodes[1],
-                          validator: emailValidator),
-                      MyPasswordField(
-                        fillColor: Colors.white,
-                        focusNode: _signUpFocusNodes[2],
-                        validator: passwordValidator,
+                      TextField(
+                        onChanged: (value) {
+                          pass = value;
+                        },
+                        obscureText: true,
+                        decoration: InputDecoration(hintText: 'Password'),
+
                       ),
                       MyCheckBox(
                         text: 'Keep me signed in',
                       ),
                       MyTextButton(
                         buttonName: 'Create Account',
-                        onPressed: onSubmit,
+                        // onPressed: onSubmit,
                         bgColor: kPrimaryColor,
+
+                        onPressed: () async {
+                          try {
+                            UserCredential userCredential = await FirebaseAuth
+                                .instance
+                                .createUserWithEmailAndPassword(
+                                email: email, password: pass);
+                            Fluttertoast.showToast(msg: "Login Successful");
+                          Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) => Loby_page()));
+                          } on FirebaseAuthException catch (e) {
+                            if (e.code == 'weak-password') {
+                              print('The password provided is too weak.');
+                            } else if (e.code == 'email-already-in-use') {
+                              print('The account already exists for that email.');
+                            }
+                          } catch (e) {
+                            print(e);
+                          }
+                        },
 
 
                       ),
