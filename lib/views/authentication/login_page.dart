@@ -1,6 +1,8 @@
 import 'package:edu_tools/Home.dart';
 import 'package:edu_tools/lobby_page.dart';
 import 'package:edu_tools/main.dart';
+import 'package:edu_tools/screen/checking.dart';
+import 'package:edu_tools/screen/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -176,7 +178,7 @@ class _LoginPageState extends State<LoginPage> {
             .then((uid) => {
           Fluttertoast.showToast(msg: "Login Successful"),
           Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => Loby_page())),
+              MaterialPageRoute(builder: (context) => main_screen())),
         });
       } on FirebaseAuthException catch (error) {
         switch (error.code) {

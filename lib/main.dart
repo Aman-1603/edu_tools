@@ -1,3 +1,4 @@
+import 'package:edu_tools/screen/main_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:edu_tools/app_styles.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './views/pages.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 bool? seenOnboard;
 
@@ -31,10 +33,12 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)  {
+
     return MaterialApp(
+
       debugShowCheckedModeBanner: false,
-      title: 'Habit App',
+      title: 'Edutools',
       theme: ThemeData(
         textTheme: GoogleFonts.manropeTextTheme(
           Theme.of(context).textTheme,
@@ -42,7 +46,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: kScaffoldBackground,
       ),
-      home: seenOnboard == true ? SignUpPage() : OnBoardingPage(),
+      // home: seenOnboard == true ? SignUpPage() : OnBoardingPage(),
+      home: main_screen(),
     );
+
   }
+
+
 }

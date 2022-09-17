@@ -4,6 +4,7 @@ import './size_configs.dart';
 const Color kPrimaryColor = Color(0xfff76c5e);
 const Color kSecondaryColor = Color(0xff535f8c);
 const Color kScaffoldBackground = Color(0xffebfdff);
+const Color primaryColor = Color(0xFF473F97);
 
 final kTitle = TextStyle(
   fontFamily: 'Klasik',
