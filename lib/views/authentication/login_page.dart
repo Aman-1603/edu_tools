@@ -1,5 +1,4 @@
 import 'package:edu_tools/Home.dart';
-import 'package:edu_tools/lobby_page.dart';
 import 'package:edu_tools/main.dart';
 import 'package:edu_tools/screen/checking.dart';
 import 'package:edu_tools/screen/main_screen.dart';
@@ -177,8 +176,18 @@ class _LoginPageState extends State<LoginPage> {
             .signInWithEmailAndPassword(email: email, password: password)
             .then((uid) => {
           Fluttertoast.showToast(msg: "Login Successful"),
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => main_screen())),
+
+          //adding dialog box advance dialog
+
+        showDialog(context: context, builder: (BuildContext context){
+        return AdvanceCustomAlertlogin();
+        })
+
+
+          //disabled for advancedialog box
+
+          // Navigator.of(context).pushReplacement(
+          //     MaterialPageRoute(builder: (context) => main_screen())),
         });
       } on FirebaseAuthException catch (error) {
         switch (error.code) {
@@ -208,5 +217,62 @@ class _LoginPageState extends State<LoginPage> {
         print(error.code);
       }
     }
+  }
+}
+
+
+class AdvanceCustomAlertlogin extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4)
+      ),
+      child: Stack(
+        // overflow: overflow.visible,
+        clipBehavior: Clip.none,
+        alignment: Alignment.topCenter,
+        children: [
+          Container(
+            height: 250,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(10,60,10,10),
+              child: Column(
+
+                children: [
+                  Text('Succesfully Login', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),textAlign: TextAlign.center,),
+                  SizedBox(height: 5,),
+                  Text('Welcome To EduTools', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),textAlign: TextAlign.center,),
+                  SizedBox(height: 20,),
+
+                  RaisedButton(onPressed: (){
+
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => main_screen()));
+
+
+                  },
+                    child: Text('Okay',style: TextStyle(color: Colors.white),),
+                  ),
+
+                ],
+              ),
+            ),
+          ),
+
+          Positioned(child: CircleAvatar(
+            backgroundColor: Colors.redAccent,
+            radius: 60,
+            child: Icon(Icons.align_horizontal_right,size: 50,color: Colors.white,),
+          ),
+            top: -70,
+          )
+
+
+        ],
+
+      ),
+    );
   }
 }

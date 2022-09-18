@@ -46,8 +46,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: kScaffoldBackground,
       ),
-      // home: seenOnboard == true ? SignUpPage() : OnBoardingPage(),
-      home: main_screen(),
+      home: seenOnboard == true ? SignUpPage() : OnBoardingPage(),
+      // home: main_screen(),
     );
 
   }

@@ -1,8 +1,8 @@
+import 'package:edu_tools/metting/meet_home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../../app_styles.dart';
-import '../../lobby_page.dart';
 import '../../size_configs.dart';
 import '../../validators.dart';
 import '../pages.dart';
@@ -122,9 +122,27 @@ class _SignUpPageState extends State<SignUpPage> {
                                 .instance
                                 .createUserWithEmailAndPassword(
                                 email: email, password: pass);
-                            Fluttertoast.showToast(msg: "Login Successful");
-                          Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => Loby_page()));
+                            Fluttertoast.showToast(msg: "You Have Sucessfully Registred");
+
+                            //Adding advance custom dialog
+
+                            showDialog(context: context, builder: (BuildContext context){
+                              return AdvanceCustomAlert();
+                            });
+
+                          //Alert Dialog ended here
+
+
+
+                            //not navigating here for advance dialogbox
+
+
+                          // Navigator.of(context).pushReplacement(
+                          // MaterialPageRoute(builder: (context) => LoginPage()));
+
+
+
+
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'weak-password') {
                               print('The password provided is too weak.');
@@ -208,4 +226,62 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
     );
   }
+  
 }
+
+class AdvanceCustomAlert extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(4)
+      ),
+      child: Stack(
+        // overflow: overflow.visible,
+        clipBehavior: Clip.none,
+        alignment: Alignment.topCenter,
+        children: [
+          Container(
+            height: 250,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(10,60,10,10),
+              child: Column(
+
+                children: [
+                  Text('Succesfully Registred', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),textAlign: TextAlign.center,),
+                  SizedBox(height: 5,),
+                  Text('Now Login to Start Enter Edutools', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),textAlign: TextAlign.center,),
+                  SizedBox(height: 20,),
+
+                  RaisedButton(onPressed: (){
+
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => LoginPage()));
+
+
+                  },
+                  child: Text('Okay',style: TextStyle(color: Colors.white),),
+                  ),
+
+                ],
+              ),
+            ),
+          ),
+
+          Positioned(child: CircleAvatar(
+            backgroundColor: Colors.redAccent,
+            radius: 60,
+            child: Icon(Icons.align_horizontal_right,size: 50,color: Colors.white,),
+          ),
+          top: -70,
+          )
+
+
+        ],
+
+      ),
+    );
+  }
+}
+
