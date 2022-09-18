@@ -241,7 +241,7 @@ class AdvanceCustomAlertlogin extends StatelessWidget {
               child: Column(
 
                 children: [
-                  Text('Succesfully Login', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),textAlign: TextAlign.center,),
+                  Text('Succesfully Login..', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),textAlign: TextAlign.center,),
                   SizedBox(height: 5,),
                   Text('Welcome To EduTools', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),textAlign: TextAlign.center,),
                   SizedBox(height: 20,),
