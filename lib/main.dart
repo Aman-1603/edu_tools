@@ -1,4 +1,3 @@
-import 'package:edu_tools/screen/main_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:edu_tools/app_styles.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './views/pages.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 
 bool? seenOnboard;
 

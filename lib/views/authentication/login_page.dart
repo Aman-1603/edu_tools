@@ -1,15 +1,8 @@
-import 'package:edu_tools/Home.dart';
-import 'package:edu_tools/main.dart';
-import 'package:edu_tools/screen/checking.dart';
 import 'package:edu_tools/screen/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import '../../app_styles.dart';
-import '../../size_configs.dart';
-import '../../validators.dart';
 import '../pages.dart';
-import '../../widgets/widgets.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
