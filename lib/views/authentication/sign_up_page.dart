@@ -1,3 +1,4 @@
+import 'package:edu_tools/Home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -5,6 +6,9 @@ import '../../app_styles.dart';
 import '../../size_configs.dart';
 import '../pages.dart';
 import '../../widgets/widgets.dart';
+
+import 'package:edu_tools/resources/auth_methods.dart';
+
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -47,6 +51,9 @@ class _SignUpPageState extends State<SignUpPage> {
   //added
 
 
+  //for login signup using google
+  final AuthMethods _authMethods = AuthMethods();
+  //upto this
 
 
   @override
@@ -184,8 +191,23 @@ class _SignUpPageState extends State<SignUpPage> {
                   children: [
                     Expanded(
                       child: LargeIconButton(
+
                         buttonName: 'Google',
                         iconImage: 'assets/images/auth/google_icon.png',
+                        onPressed: () {
+                          Fluttertoast.showToast(msg: "clicked");
+                        },
+
+                        // onPressed: () async {
+                        //   Fluttertoast.showToast(msg: "clicked");
+                        //   bool res = await _authMethods.signInWithGoogle(context);
+                        //   if (res) {
+                        //     Navigator.of(context).pushReplacement(
+                        //         MaterialPageRoute(builder: (context) => HomeScreen()));
+                        //   }
+                        // },
+
+
                       ),
                     ),
                     SizedBox(
@@ -195,6 +217,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: LargeIconButton(
                       buttonName: 'Facebook',
                       iconImage: 'assets/images/auth/facebook_icon.png',
+                      onPressed: () {},
                     )),
                   ],
                 ),

@@ -1,23 +1,38 @@
+import 'dart:math';
+
 import 'package:edu_tools/metting/home_meeting_button.dart';
+import 'package:edu_tools/metting/meeting_screen.dart';
+import 'package:edu_tools/resources/jitsi_meet_methods.dart';
 import 'package:flutter/material.dart';
 import 'home_meeting_button.dart';
 
 import 'NavBar.dart';
 
-class meet_home_page extends StatefulWidget {
-  const meet_home_page({Key? key}) : super(key: key);
-
-  @override
-  State<meet_home_page> createState() => _meet_home_pageState();
-}
-
-class _meet_home_pageState extends State<meet_home_page> {
+class meet_home_page extends StatelessWidget {
+  meet_home_page({Key? key}) : super(key: key);
 
   int _page = 0;
   onPageChanged(int page) {
     setState(() {
       _page = page;
     });
+  }
+
+  List<Widget> page = [
+      MeetingScreen(),
+  ];
+
+  final JitsiMeetMethods _jitsiMeetMethods = JitsiMeetMethods();
+
+  //creating meeting
+
+  createNewMeeting() async {
+    var random = Random();
+    //here we are creating a random UID instead of asking user to create a new name while creating meeting
+    String roomName = (random.nextInt(10000000) + 10000000).toString();
+    _jitsiMeetMethods.createMeeting(
+      //bydeafult user is alon in meeting while creating so we will on vedio and audio bydefault on
+        roomName: roomName, isAudioMuted: true, isVideoMuted: true);
   }
 
   @override
@@ -46,12 +61,16 @@ class _meet_home_pageState extends State<meet_home_page> {
             children: [
 
             // it will have actual butten or widgets which is available in other page
-            HomeMettingButton(onPressed: () {},
-            text: 'New Meeting',
+            HomeMettingButton(
+
+              onPressed: createNewMeeting,
+
+              text: 'New Meeting',
               icon: Icons.videocam,
             ),
 
-            HomeMettingButton(onPressed: () {},
+            HomeMettingButton(
+              onPressed: () {},
               text: 'Schedual',
               icon: Icons.date_range,
             ),
@@ -128,4 +147,6 @@ class _meet_home_pageState extends State<meet_home_page> {
     );
 
   }
+
+  void setState(Null Function() param0) {}
 }

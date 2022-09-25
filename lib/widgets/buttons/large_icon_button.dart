@@ -6,6 +6,7 @@ class LargeIconButton extends StatelessWidget {
     Key? key,
     required this.buttonName,
     required this.iconImage,
+    required  onPressed,
   }) : super(key: key);
 
   final String buttonName, iconImage;
