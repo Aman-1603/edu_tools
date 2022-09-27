@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:edu_tools/metting/home_meeting_button.dart';
+import 'package:edu_tools/metting/join_meeting_screen.dart';
 import 'package:edu_tools/metting/meeting_screen.dart';
 import 'package:edu_tools/resources/jitsi_meet_methods.dart';
 import 'package:flutter/material.dart';
@@ -75,7 +76,10 @@ class meet_home_page extends StatelessWidget {
               icon: Icons.date_range,
             ),
 
-            HomeMettingButton(onPressed: () {},
+            HomeMettingButton(onPressed: () {
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => Join_Meeting_Screen()));
+            },
               text: 'join Meeting',
               icon: Icons.join_full,
             ),

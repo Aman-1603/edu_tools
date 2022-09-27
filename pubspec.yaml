@@ -48,6 +48,7 @@ dependencies:
   jitsi_meet: ^4.0.0
   cloud_firestore: ^3.1.10
   google_sign_in: ^5.0.1
+  lottie: ^1.4.2
 
 
 

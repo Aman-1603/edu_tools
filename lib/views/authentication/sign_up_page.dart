@@ -186,6 +186,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     Expanded(
                       child: CustomButton(
                         text: 'Google Sign In',
+
                         onPressed: () async {
                           bool res =
                               await _authMethods.signInWithGoogle(context);
@@ -218,15 +219,24 @@ class _SignUpPageState extends State<SignUpPage> {
                         // },
                       ),
                     ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                        child: LargeIconButton(
-                      buttonName: 'Facebook',
-                      iconImage: 'assets/images/auth/facebook_icon.png',
-                      onPressed: () {},
-                    )),
+
+
+                    //for facebook
+
+
+                    // SizedBox(
+                    //   width: 20,
+                    // ),
+                    // Expanded(
+                    //     child: LargeIconButton(
+                    //   buttonName: 'Facebook',
+                    //   iconImage: 'assets/images/auth/facebook_icon.png',
+                    //   onPressed: () {},
+                    // )),
+
+                    //facbook ends here
+
+
                   ],
                 ),
                 SizedBox(
