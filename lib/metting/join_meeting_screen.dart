@@ -9,29 +9,26 @@ import '../resources/auth_methods.dart';
 import '../resources/jitsi_meet_methods.dart';
 import '../widgets/buttons/custom_button.dart';
 import '../widgets/meeting_option.dart';
-
-class Join_Meeting_Screen extends StatefulWidget {
-  const Join_Meeting_Screen({Key? key}) : super(key: key);
+class VideoCallScreen extends StatefulWidget {
+  const VideoCallScreen({Key? key}) : super(key: key);
 
   @override
-  State<Join_Meeting_Screen> createState() => _Join_Meeting_ScreenState();
+  State<VideoCallScreen> createState() => _VideoCallScreenState();
 }
 
-class _Join_Meeting_ScreenState extends State<Join_Meeting_Screen> {
-
+class _VideoCallScreenState extends State<VideoCallScreen> {
   final AuthMethods _authMethods = AuthMethods();
   late TextEditingController meetingIdController;
   late TextEditingController nameController;
   final JitsiMeetMethods _jitsiMeetMethods = JitsiMeetMethods();
   bool isAudioMuted = true;
   bool isVideoMuted = true;
-  late bool exist;
 
   @override
   void initState() {
     meetingIdController = TextEditingController();
     nameController = TextEditingController(
-      text: _authMethods.user.displayName,  //it will by default print name in text box using email name
+      text: _authMethods.user.displayName,
     );
     super.initState();
   }
@@ -53,159 +50,92 @@ class _Join_Meeting_ScreenState extends State<Join_Meeting_Screen> {
     );
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         elevation: 0,
         backgroundColor: palette.backgroundColor,
-        title: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "You are in join Meeting Lobby",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
+        title: const Text(
+          'Join a Meeting',
+          style: TextStyle(
+            fontSize: 18,
+          ),
         ),
+        centerTitle: true,
       ),
-
-
-      //adding
-
-
-
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            Text(
-              "Hey,",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
+      body: Column(
+        children: [
+          SizedBox(
+            height: 60,
+            child: TextField(
+              controller: meetingIdController,
+              maxLines: 1,
+              textAlign: TextAlign.center,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                fillColor: palette.secondaryBackgroundColor,
+                filled: true,
+                border: InputBorder.none,
+                hintText: 'Room ID',
+                contentPadding: EdgeInsets.fromLTRB(16, 8, 0, 0),
               ),
             ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-             "Hello Learner",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 38,
+          ),
+          SizedBox(
+            height: 60,
+            child: TextField(
+              controller: nameController,
+              maxLines: 1,
+              textAlign: TextAlign.center,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                fillColor: palette.secondaryBackgroundColor,
+                filled: true,
+                border: InputBorder.none,
+                hintText: 'Name',
+                contentPadding: EdgeInsets.fromLTRB(16, 8, 0, 0),
               ),
             ),
-            Image.asset(
-              "assets/images/auth/login_image.png",
-              height: 325,
-              width: 325,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                children: [
-                  Text(
-                    "Enter Room ID",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextField(
-                    // controller: meetingIdController,
-                    keyboardType: TextInputType.number,
-                    maxLines: 1,
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                    decoration: InputDecoration(
-
-                      fillColor: palette.secondaryBackgroundColor,
-                      filled: true,
-                      border: InputBorder.none,
-                      hintStyle: TextStyle(color: Colors.white),
-                      hintText: "Enter 8 digit ROOM ID here.",
-                      contentPadding: EdgeInsets.all(10),
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-
-                  SizedBox(
-                    height: 60,
-                    child: TextField(
-
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-
-                      controller: nameController,
-                      maxLines: 1,
-                      textAlign: TextAlign.center,
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        fillColor: palette.secondaryBackgroundColor,
-                        filled: true,
-                        border: InputBorder.none,
-                        hintText: 'Name',
-                        contentPadding: EdgeInsets.fromLTRB(16, 8, 0, 0),
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      MeetingOption(
-
-                        text: "Mute Audio",
-                        isMute: isAudioMuted,
-                        onChange: onAudio,
-                      ),
-                      MeetingOption(
-                        text: "Turn off Video",
-                        isMute: isVideoMuted,
-                        onChange: onVideo,
-                      ),
-                    ],
-                  ),
-                ],
+          ),
+          const SizedBox(height: 20),
+          InkWell(
+            onTap: _joinMeeting,
+            child: const Padding(
+              padding: EdgeInsets.all(8),
+              child: Text(
+                'Join',
+                style: TextStyle(
+                  fontSize: 16,
+                ),
               ),
             ),
-            CustomButton(text: "Tap to Join", onPressed: _joinMeeting)
-          ],
-
-        ),
+          ),
+          const SizedBox(height: 20),
+          MeetingOption(
+            text: 'Mute Audio',
+            isMute: isAudioMuted,
+            onChange: onAudioMuted,
+          ),
+          MeetingOption(
+            text: 'Turn Off My Video',
+            isMute: isVideoMuted,
+            onChange: onVideoMuted,
+          ),
+        ],
       ),
     );
   }
 
-  onAudio(bool value) {
+  onAudioMuted(bool val) {
     setState(() {
-      isAudioMuted = value;
+      isAudioMuted = val;
     });
   }
 
-  onVideo(bool value) {
+  onVideoMuted(bool val) {
     setState(() {
-      isVideoMuted = value;
-    }
-
-    );
-
+      isVideoMuted = val;
+    });
   }
 }

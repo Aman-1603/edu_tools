@@ -78,7 +78,7 @@ class meet_home_page extends StatelessWidget {
 
             HomeMettingButton(onPressed: () {
               Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => Join_Meeting_Screen()));
+                  MaterialPageRoute(builder: (context) => VideoCallScreen()));
             },
               text: 'join Meeting',
               icon: Icons.join_full,
