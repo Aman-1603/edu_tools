@@ -1,4 +1,5 @@
 import 'package:edu_tools/palette.dart';
+import 'package:edu_tools/screen/home_nav_bar.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatefulWidget with PreferredSizeWidget{
@@ -23,7 +24,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
         leading: IconButton(
           icon: const Icon(Icons.menu),
           iconSize: 28.0,
-            onPressed: (){},
+            onPressed: (){
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => HomeNavBar()));
+            },
         ),
 
 

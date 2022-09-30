@@ -1,5 +1,7 @@
+import 'package:edu_tools/screen/home_nav_bar.dart';
 import 'package:flutter/material.dart';
 
+import '../metting/NavBar.dart';
 import '../widgets/custom_app_bar.dart';
 class Home_Lobby_Screen extends StatefulWidget {
   const Home_Lobby_Screen({Key? key}) : super(key: key);
@@ -13,7 +15,19 @@ class _Home_Lobby_ScreenState extends State<Home_Lobby_Screen> {
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: CustomAppBar(),
+
+
+      drawer: HomeNavBar(),
+      // appBar: CustomAppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.indigoAccent,
+        elevation: 0,
+        title: const Text('Edutools',),
+        centerTitle: true,
+      ),
+
+
+
       body: CustomScrollView(
         physics: ClampingScrollPhysics(),
         slivers: <Widget>[
@@ -30,7 +44,8 @@ class _Home_Lobby_ScreenState extends State<Home_Lobby_Screen> {
          //adding Box at top
 
          decoration: BoxDecoration(
-           color: Color(0xFF473F97),
+           //color: Color(0xFF473F97),
+             color: Colors.indigoAccent,
            borderRadius: BorderRadius.only(
              bottomLeft: Radius.circular(40.0),
              bottomRight: Radius.circular(40.0),

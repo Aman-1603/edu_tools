@@ -1,7 +1,28 @@
 import 'package:flutter/material.dart';
-class NavBar extends StatelessWidget {
-  const NavBar({Key? key}) : super(key: key);
+import '../resources/auth_methods.dart';
+import 'history_meeting_screen.dart';
 
+class NavBar extends StatefulWidget {
+  const NavBar({Key? key}) : super(key: key);
+  @override
+  State<NavBar> createState() => _NavBar();
+}
+
+
+class _NavBar extends State<NavBar> {
+
+  final AuthMethods _authMethods = AuthMethods();
+  late TextEditingController nameController;
+
+
+  @override
+  void initState() {
+    nameController = TextEditingController(
+      text: _authMethods.user.displayName,
+    );
+
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -10,7 +31,7 @@ class NavBar extends StatelessWidget {
 
             //card bar
 
-            UserAccountsDrawerHeader(accountName: Text('CEIT Class'), accountEmail: Text('Information technology'),
+            UserAccountsDrawerHeader(accountName: Text('CEIT Class'), accountEmail: Text(nameController.text),
 
               currentAccountPicture: CircleAvatar(
                 child: ClipOval(
@@ -50,9 +71,21 @@ class NavBar extends StatelessWidget {
               leading: Icon(Icons.join_full),
               title: Text("Join Meeting"),
               onTap: () => {},
-            )
+            ),
+
+            ListTile(
+              leading: Icon(Icons.history),
+              title: Text("History"),
+              onTap: () =>
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => HistoryMeetingScreen()))
+
+            ),
+
           ],
-        )
+        ),
+
+
     );
   }
 }

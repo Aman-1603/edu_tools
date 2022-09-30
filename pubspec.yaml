@@ -102,6 +102,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/auth/
+    - assets/animation/
     - assets/images/auth/login.png
     - assets/images/auth/home_login_signup.png
     - assets/images/auth/login_image.png

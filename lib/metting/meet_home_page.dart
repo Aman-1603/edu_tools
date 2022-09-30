@@ -1,8 +1,6 @@
 import 'dart:math';
-
 import 'package:edu_tools/metting/home_meeting_button.dart';
 import 'package:edu_tools/metting/join_meeting_screen.dart';
-import 'package:edu_tools/metting/meeting_screen.dart';
 import 'package:edu_tools/resources/jitsi_meet_methods.dart';
 import 'package:flutter/material.dart';
 import 'home_meeting_button.dart';
@@ -12,16 +10,6 @@ import 'NavBar.dart';
 class meet_home_page extends StatelessWidget {
   meet_home_page({Key? key}) : super(key: key);
 
-  int _page = 0;
-  onPageChanged(int page) {
-    setState(() {
-      _page = page;
-    });
-  }
-
-  List<Widget> page = [
-      MeetingScreen(),
-  ];
 
   final JitsiMeetMethods _jitsiMeetMethods = JitsiMeetMethods();
 
@@ -111,43 +99,11 @@ class meet_home_page extends StatelessWidget {
 
       // body ends here
 
+      //bottom navigation
+
+      //bottom navigation ends here
 
 
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey,
-        onTap: onPageChanged,
-        currentIndex: _page,
-        type: BottomNavigationBarType.fixed,
-        unselectedFontSize: 14,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.comment_bank,
-            ),
-            label: 'Meet & Char',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.lock_clock,
-            ),
-            label: 'Meetings',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person_outline,
-            ),
-            label: 'Contacts',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.settings_outlined,
-            ),
-            label: 'Settings',
-          ),
-        ],
-      ),
     );
 
   }
