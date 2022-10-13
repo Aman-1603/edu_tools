@@ -12,6 +12,7 @@ class _teacher_homeState extends State<teacher_home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
      backgroundColor: Colors.indigoAccent,
       appBar: AppBar(
         backgroundColor: Colors.indigoAccent,

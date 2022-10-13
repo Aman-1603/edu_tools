@@ -163,6 +163,7 @@ class _LoginPageState extends State<LoginPage> {
 
   // login function
   void signIn(String email, String password) async {
+    CircularProgressIndicator();
     if (_formKey.currentState!.validate()) {
       try {
         await _auth

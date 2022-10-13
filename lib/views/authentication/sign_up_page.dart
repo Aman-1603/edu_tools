@@ -1,10 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:edu_tools/Home.dart';
 import 'package:edu_tools/screen/home_lobby_screen.dart';
 import 'package:edu_tools/screen/main_screen.dart';
+import 'package:edu_tools/validators.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../../app_styles.dart';
+import '../../resources/UserModel.dart';
 import '../../size_configs.dart';
 import '../../widgets/buttons/custom_button.dart';
 import '../pages.dart';
@@ -29,6 +32,19 @@ class _SignUpPageState extends State<SignUpPage> {
 
   // string for displaying the error Message
   String? errorMessage;
+
+
+  //drop down options...
+  var options = [
+    'Student',
+    'Teacher',
+  ];
+  var _currentItemSelected = "Student";
+  var rool = "Student";
+
+  //drop down options ends here
+
+
 
   void onSubmit() {
     _signUpKey.currentState!.validate();
@@ -111,22 +127,70 @@ class _SignUpPageState extends State<SignUpPage> {
                       MyCheckBox(
                         text: 'Keep me signed in',
                       ),
+
+
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Rool : ",
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontFamily: kTitle2.fontFamily,
+                              // fontWeight: FontWeight.bold,
+                              color: Colors.indigoAccent,
+                            ),
+                          ),
+                          DropdownButton<String>(
+                            dropdownColor: Colors.white,
+                            isDense: true,
+                            isExpanded: false,
+                            iconEnabledColor: Colors.indigoAccent,
+                            focusColor: Colors.white,
+                            items: options.map((String dropDownStringItem) {
+                              return DropdownMenuItem<String>(
+                                value: dropDownStringItem,
+                                child: Text(
+                                  dropDownStringItem,
+                                  style: TextStyle(
+                                    fontFamily: kTitle2.fontFamily,
+                                    color: Colors.indigoAccent,
+                                    // fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: (newValueSelected) {
+                              setState(() {
+                                _currentItemSelected = newValueSelected!;
+                                rool = newValueSelected;
+                              });
+                            },
+                            value: _currentItemSelected,
+                          ),
+                        ],
+                      ),
+
+
+
                       MyTextButton(
                         buttonName: 'Create Account',
                         // onPressed: onSubmit,
                         bgColor: kPrimaryColor,
 
                         onPressed: () async {
+                          CircularProgressIndicator();
                           try {
                             UserCredential userCredential = await FirebaseAuth
                                 .instance
                                 .createUserWithEmailAndPassword(
-                                    email: email, password: pass);
+                                    email: email, password: pass, );
                             Fluttertoast.showToast(
                                 msg: "You Have Sucessfully Registred");
 
                             //Adding advance custom dialog
-
                             showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
@@ -178,6 +242,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     ],
                   ),
                 ),
+
+
+
                 Row(
                   children: [
                     SizedBox(
@@ -265,6 +332,19 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
     );
   }
+
+  postDetailsToFirestore(String email, String rool) async {
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    User? user = _auth.currentUser;
+    UserModel userModel = UserModel();
+    userModel.email = email;
+    userModel.uid = user!.uid;
+    userModel.wrool = rool;
+    await firebaseFirestore
+        .collection("users")
+        .doc(user.uid)
+        .set(userModel.toMap());
+  }
 }
 
 class AdvanceCustomAlert extends StatelessWidget {
@@ -329,4 +409,9 @@ class AdvanceCustomAlert extends StatelessWidget {
       ),
     );
   }
+
+
+
 }
+
+//.then((value) => postDetailsToFirestore(email, rool)).catchError((e) {})

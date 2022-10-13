@@ -3,6 +3,7 @@ import 'package:edu_tools/metting/meet_home_page.dart';
 import 'package:edu_tools/screen/home_nav_bar.dart';
 import 'package:edu_tools/screen/checking.dart';
 import 'package:edu_tools/screen/home_lobby_screen.dart';
+import 'package:edu_tools/teacher_modual/addpost.dart';
 import 'package:edu_tools/teacher_modual/teacher_main.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,8 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     Home_Lobby_Screen(),
     checking_file(),
     meet_home_page(),
-    teacher_home(),
+    // teacher_home(),
+    addnote(),
 
   ];
   int _currentIndex = 0;
