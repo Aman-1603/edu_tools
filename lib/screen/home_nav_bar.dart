@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../resources/auth_methods.dart';
 class HomeNavBar extends StatefulWidget {
   const HomeNavBar({Key? key}) : super(key: key);

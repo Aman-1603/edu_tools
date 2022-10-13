@@ -22,7 +22,7 @@ class _Home_Lobby_ScreenState extends State<Home_Lobby_Screen> {
       appBar: AppBar(
         backgroundColor: Colors.indigoAccent,
         elevation: 0,
-        title: const Text('Edutools',),
+        title: const Text('Edutools',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
         centerTitle: true,
       ),
 

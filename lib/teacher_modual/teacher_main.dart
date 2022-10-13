@@ -1,5 +1,3 @@
-import 'package:edu_tools/teacher_modual/design_message.dart';
-import 'package:edu_tools/teacher_modual/topbox.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,11 +12,39 @@ class _teacher_homeState extends State<teacher_home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.indigo,
-      body: Column(children: [
-        topbox(),
-        Expanded(child: design_message()),
-      ],),
+     backgroundColor: Colors.indigoAccent,
+      appBar: AppBar(
+        backgroundColor: Colors.indigoAccent,
+        elevation: 0,
+        title: const Text('Send Your Message To students',),
+        centerTitle: true,
+
+        leading: IconButton(
+          onPressed: (){},
+          icon: Icon(Icons.arrow_back,size: 30,),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.more_vert,size: 30,),
+          ),
+        ],
+      ),
+
+        body: Container(
+
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30.0),
+              topRight: Radius.circular(30.0),
+            ),
+          ),
+
+        ),
     );
   }
 }
+
+
+

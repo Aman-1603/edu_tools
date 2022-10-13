@@ -1,5 +1,7 @@
 import 'package:edu_tools/app_styles.dart';
+import 'package:edu_tools/metting/meet_home_page.dart';
 import 'package:edu_tools/palette.dart';
+import 'package:edu_tools/screen/BottomNavScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
@@ -54,15 +56,21 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: palette.backgroundColor,
-        title: const Text(
-          'Join a Meeting',
-          style: TextStyle(
-            fontSize: 18,
-          ),
-        ),
         centerTitle: true,
+        title: Text('Join Metting'),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => BottomNavScreen()));
+          },
+          icon: Icon(Icons.arrow_back,size: 30,),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.more_vert,size: 30,),
+          ),
+        ],
       ),
       body: Column(
         children: [

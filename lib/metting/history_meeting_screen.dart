@@ -1,4 +1,6 @@
-import 'package:edu_tools/palette.dart';
+import 'package:edu_tools/metting/join_meeting_screen.dart';
+import 'package:edu_tools/metting/meet_home_page.dart';
+import 'package:edu_tools/screen/BottomNavScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../resources/firestore_methods.dart';
@@ -9,17 +11,23 @@ class HistoryMeetingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: palette.backgroundColor,
-        title: const Text(
-          'History',
-          style: TextStyle(
-            fontSize: 18,
+       appBar: AppBar(
+          centerTitle: true,
+          title: Text('History'),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => BottomNavScreen()));
+            },
+            icon: Icon(Icons.arrow_back,size: 30,),
           ),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.more_vert,size: 30,),
+            ),
+          ],
         ),
-        centerTitle: true,
-      ),
       body: StreamBuilder(
         stream: FirestoreMethods().meetingsHistory,
         builder: (context, snapshot) {
