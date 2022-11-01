@@ -58,7 +58,7 @@ class _Home_Lobby_ScreenState extends State<Home_Lobby_Screen> {
          child: Column(
            mainAxisAlignment: MainAxisAlignment.center,
            children: <Widget>[
-             Text('Hello Learner',
+             Text('Hello Learners',
              textAlign: TextAlign.center,
              style: const TextStyle(color: Colors.white,fontSize: 25.0,fontWeight: FontWeight.bold,
              ),
