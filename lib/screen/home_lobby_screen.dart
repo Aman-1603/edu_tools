@@ -66,11 +66,7 @@ class _Home_Lobby_ScreenState extends State<Home_Lobby_Screen> {
            ],
 
          ),
-
-
     )
-
        );
   }
-
   }
