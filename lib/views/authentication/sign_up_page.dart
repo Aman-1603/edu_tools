@@ -23,18 +23,21 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  final _signUpKey = GlobalKey<FormState>();
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool showProgress = false;
+  bool visible = false;
 
-  late String _name, _email, _password;
-
-  // string for displaying the error Message
-  String? errorMessage;
-
-
-  //drop down options...
+  final _formkey = GlobalKey<FormState>();
+  final _auth = FirebaseAuth.instance;
+  CollectionReference ref = FirebaseFirestore.instance.collection('users');
+  final TextEditingController passwordController = new TextEditingController();
+  final TextEditingController confirmpassController =
+  new TextEditingController();
+  final TextEditingController name = new TextEditingController();
+  final TextEditingController emailController = new TextEditingController();
+  final TextEditingController mobile = new TextEditingController();
+  bool _isObscure = true;
+  bool _isObscure2 = true;
   var options = [
     'Student',
     'Teacher',
@@ -42,295 +45,328 @@ class _SignUpPageState extends State<SignUpPage> {
   var _currentItemSelected = "Student";
   var rool = "Student";
 
-  //drop down options ends here
-
-
-
-  void onSubmit() {
-    _signUpKey.currentState!.validate();
-  }
-
-  List<FocusNode> _signUpFocusNodes = [
-    FocusNode(),
-    FocusNode(),
-    FocusNode(),
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    _signUpFocusNodes.forEach((element) {
-      element.addListener(() {
-        setState(() {});
-      });
-    });
-  }
-
-  //added
-
   //for login signup using google
   final AuthMethods _authMethods = AuthMethods();
   //upto this
 
   @override
   Widget build(BuildContext context) {
-    String email = '', pass = '';
-    SizeConfig().init(context);
-    double height = SizeConfig.blockSizeV!;
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              children: [
-                Container(
-                  child: Image.asset('assets/images/auth/login_image.png'),
-                  width: double.infinity,
-                ),
-                SizedBox(
-                  height: height * 2,
-                ),
-                Text(
-                  'Create Your Account',
-                  style: kTitle2,
-                ),
-                SizedBox(
-                  height: height * 2,
-                ),
-                Form(
-                  key: _signUpKey,
-                  child: Column(
-                    children: [
-                      // MyTextFormField(
-                      //   fillColor: Colors.white,
-                      //   hint: 'Name',
-                      //   icon: Icons.person,
-                      //   inputAction: TextInputAction.next,
-                      //   inputType: TextInputType.name,
-                      //   focusNode: _signUpFocusNodes[0],
-                      //   validator: nameValidator,
-                      // ),
-                      TextField(
-                        onChanged: (value) {
-                          email = value;
-                        },
-                        decoration: InputDecoration(hintText: 'Email'),
-                      ),
-                      TextField(
-                        onChanged: (value) {
-                          pass = value;
-                        },
-                        obscureText: true,
-                        decoration: InputDecoration(hintText: 'Password'),
-                      ),
-                      MyCheckBox(
-                        text: 'Keep me signed in',
-                      ),
-
-
-
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Rool : ",
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontFamily: kTitle2.fontFamily,
-                              // fontWeight: FontWeight.bold,
-                              color: Colors.indigoAccent,
+      backgroundColor: Colors.orange[900],
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              color: Colors.orangeAccent[700],
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: SingleChildScrollView(
+                child: Container(
+                  margin: EdgeInsets.all(12),
+                  child: Form(
+                    key: _formkey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 80,
+                        ),
+                        Text(
+                          "Register Now",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 40,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        SizedBox(
+                          height: 50,
+                        ),
+                        TextFormField(
+                          controller: emailController,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            hintText: 'Email',
+                            enabled: true,
+                            contentPadding: const EdgeInsets.only(
+                                left: 14.0, bottom: 8.0, top: 8.0),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: new BorderSide(color: Colors.white),
+                              borderRadius: new BorderRadius.circular(20),
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: new BorderSide(color: Colors.white),
+                              borderRadius: new BorderRadius.circular(20),
                             ),
                           ),
-                          DropdownButton<String>(
-                            dropdownColor: Colors.white,
-                            isDense: true,
-                            isExpanded: false,
-                            iconEnabledColor: Colors.indigoAccent,
-                            focusColor: Colors.white,
-                            items: options.map((String dropDownStringItem) {
-                              return DropdownMenuItem<String>(
-                                value: dropDownStringItem,
-                                child: Text(
-                                  dropDownStringItem,
-                                  style: TextStyle(
-                                    fontFamily: kTitle2.fontFamily,
-                                    color: Colors.indigoAccent,
-                                    // fontWeight: FontWeight.bold,
-                                    fontSize: 22,
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                            onChanged: (newValueSelected) {
-                              setState(() {
-                                _currentItemSelected = newValueSelected!;
-                                rool = newValueSelected;
-                              });
-                            },
-                            value: _currentItemSelected,
-                          ),
-                        ],
-                      ),
-
-
-
-                      MyTextButton(
-                        buttonName: 'Create Account',
-                        // onPressed: onSubmit,
-                        bgColor: kPrimaryColor,
-
-                        onPressed: () async {
-                          CircularProgressIndicator();
-                          try {
-                            UserCredential userCredential = await FirebaseAuth
-                                .instance
-                                .createUserWithEmailAndPassword(
-                                    email: email, password: pass, );
-                            Fluttertoast.showToast(
-                                msg: "You Have Sucessfully Registred");
-
-                            //Adding advance custom dialog
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AdvanceCustomAlert();
-                                });
-
-                            //Alert Dialog ended here
-
-                            //not navigating here for advance dialogbox
-
-                            // Navigator.of(context).pushReplacement(
-                            // MaterialPageRoute(builder: (context) => LoginPage()));
-
-                          } on FirebaseAuthException catch (e) {
-                            if (e.code == 'weak-password') {
-                              print('The password provided is too weak.');
-                            } else if (e.code == 'email-already-in-use') {
-                              print(
-                                  'The account already exists for that email.');
+                          validator: (value) {
+                            if (value!.length == 0) {
+                              return "Email cannot be empty";
                             }
-                          } catch (e) {
-                            print(e);
-                          }
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Divider(
-                          height: 3,
-                          color: kSecondaryColor.withOpacity(0.4),
+                            if (!RegExp(
+                                "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                                .hasMatch(value)) {
+                              return ("Please enter a valid email");
+                            } else {
+                              return null;
+                            }
+                          },
+                          onChanged: (value) {},
+                          keyboardType: TextInputType.emailAddress,
                         ),
-                      ),
-                      Text(
-                        'Or sign in with',
-                        style: kBodyText3,
-                      ),
-                      Expanded(
-                        child: Divider(
-                          height: 3,
-                          color: kSecondaryColor.withOpacity(0.4),
+                        SizedBox(
+                          height: 20,
                         ),
-                      ),
-                    ],
-                  ),
-                ),
+                        TextFormField(
+                          obscureText: _isObscure,
+                          controller: passwordController,
+                          decoration: InputDecoration(
+                            suffixIcon: IconButton(
+                                icon: Icon(_isObscure
+                                    ? Icons.visibility_off
+                                    : Icons.visibility),
+                                onPressed: () {
+                                  setState(() {
+                                    _isObscure = !_isObscure;
+                                  });
+                                }),
+                            filled: true,
+                            fillColor: Colors.white,
+                            hintText: 'Password',
+                            enabled: true,
+                            contentPadding: const EdgeInsets.only(
+                                left: 14.0, bottom: 8.0, top: 15.0),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: new BorderSide(color: Colors.white),
+                              borderRadius: new BorderRadius.circular(20),
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: new BorderSide(color: Colors.white),
+                              borderRadius: new BorderRadius.circular(20),
+                            ),
+                          ),
+                          validator: (value) {
+                            RegExp regex = new RegExp(r'^.{6,}$');
+                            if (value!.isEmpty) {
+                              return "Password cannot be empty";
+                            }
+                            if (!regex.hasMatch(value)) {
+                              return ("please enter valid password min. 6 character");
+                            } else {
+                              return null;
+                            }
+                          },
+                          onChanged: (value) {},
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        TextFormField(
+                          obscureText: _isObscure2,
+                          controller: confirmpassController,
+                          decoration: InputDecoration(
+                            suffixIcon: IconButton(
+                                icon: Icon(_isObscure2
+                                    ? Icons.visibility_off
+                                    : Icons.visibility),
+                                onPressed: () {
+                                  setState(() {
+                                    _isObscure2 = !_isObscure2;
+                                  });
+                                }),
+                            filled: true,
+                            fillColor: Colors.white,
+                            hintText: 'Confirm Password',
+                            enabled: true,
+                            contentPadding: const EdgeInsets.only(
+                                left: 14.0, bottom: 8.0, top: 15.0),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: new BorderSide(color: Colors.white),
+                              borderRadius: new BorderRadius.circular(20),
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: new BorderSide(color: Colors.white),
+                              borderRadius: new BorderRadius.circular(20),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (confirmpassController.text !=
+                                passwordController.text) {
+                              return "Password did not match";
+                            } else {
+                              return null;
+                            }
+                          },
+                          onChanged: (value) {},
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Rool : ",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                            DropdownButton<String>(
+                              dropdownColor: Colors.blue[900],
+                              isDense: true,
+                              isExpanded: false,
+                              iconEnabledColor: Colors.white,
+                              focusColor: Colors.white,
+                              items: options.map((String dropDownStringItem) {
+                                return DropdownMenuItem<String>(
+                                  value: dropDownStringItem,
+                                  child: Text(
+                                    dropDownStringItem,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
+                              onChanged: (newValueSelected) {
+                                setState(() {
+                                  _currentItemSelected = newValueSelected!;
+                                  rool = newValueSelected;
+                                });
+                              },
+                              value: _currentItemSelected,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            MaterialButton(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0))),
+                              elevation: 5.0,
+                              height: 40,
+                              onPressed: () {
+                                CircularProgressIndicator();
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoginPage(),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                "Login",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                              color: Colors.white,
+                            ),
+                            MaterialButton(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0))),
+                              elevation: 5.0,
+                              height: 40,
+                              onPressed: () {
+                                setState(() {
+                                  showProgress = true;
+                                });
+                                signUp(emailController.text,
+                                    passwordController.text, rool);
+                              },
+                              child: Text(
+                                "Register",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
 
 
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: CustomButton(
+                            text: 'Google Sign In',
 
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                      child: CustomButton(
-                        text: 'Google Sign In',
-
-                        onPressed: () async {
-                          bool res =
+                            onPressed: () async {
+                              bool res =
                               await _authMethods.signInWithGoogle(context);
-                          if (res) {
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                    builder: (context) => main_screen()));
-                          }
-                        },
-                      ),
+                              if (res) {
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) => main_screen()));
+                              }
+                            },
+                          ),
+                        ),
+
+
+
+                        SizedBox(
+                          height: 20,
+                        ),
+
+
+
+
+                        Text(
+                          "WEBFUN",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
+                            color: Colors.yellowAccent[400],
+                          ),
+                        ),
+
+
+
+
+
+                      ],
                     ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                      child: LargeIconButton(
-                        buttonName: 'Google',
-                        iconImage: 'assets/images/auth/google_icon.png',
-                        onPressed: () {
-                          Fluttertoast.showToast(msg: "clicked");
-                        },
-
-                        // onPressed: () async {
-                        //   Fluttertoast.showToast(msg: "clicked");
-                        //   bool res = await _authMethods.signInWithGoogle(context);
-                        //   if (res) {
-                        //     Navigator.of(context).pushReplacement(
-                        //         MaterialPageRoute(builder: (context) => HomeScreen()));
-                        //   }
-                        // },
-                      ),
-                    ),
-
-
-                    //for facebook
-
-
-                    // SizedBox(
-                    //   width: 20,
-                    // ),
-                    // Expanded(
-                    //     child: LargeIconButton(
-                    //   buttonName: 'Facebook',
-                    //   iconImage: 'assets/images/auth/facebook_icon.png',
-                    //   onPressed: () {},
-                    // )),
-
-                    //facbook ends here
-
-
-                  ],
+  ],
+                  ),
                 ),
-                SizedBox(
-                  height: height * 3,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Already have an account? ',
-                      style: kBodyText3,
-                    ),
-                    SmallTextButton(
-                      buttonText: 'Sign in',
-                      page: LoginPage(),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: height * 2,
-                ),
-              ],
+              ),
             ),
-          ),
+      ),
+          ],
         ),
       ),
     );
+  }
+
+  void signUp(String email, String password, String rool) async {
+    CircularProgressIndicator();
+    if (_formkey.currentState!.validate()) {
+      await _auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((value) => {postDetailsToFirestore(email, rool)})
+          .catchError((e) {});
+    }
   }
 
   postDetailsToFirestore(String email, String rool) async {
@@ -344,74 +380,8 @@ class _SignUpPageState extends State<SignUpPage> {
         .collection("users")
         .doc(user.uid)
         .set(userModel.toMap());
+
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => LoginPage()));
   }
 }
-
-class AdvanceCustomAlert extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-      child: Stack(
-        // overflow: overflow.visible,
-        clipBehavior: Clip.none,
-        alignment: Alignment.topCenter,
-        children: [
-          Container(
-            height: 250,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(10, 60, 10, 10),
-              child: Column(
-                children: [
-                  Text(
-                    'Succesfully Registred',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    'Now Login to Start Enter Edutools',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  RaisedButton(
-                    onPressed: () {
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => LoginPage()));
-                    },
-                    child: Text(
-                      'Okay',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-            child: CircleAvatar(
-              backgroundColor: Colors.redAccent,
-              radius: 60,
-              child: Icon(
-                Icons.align_horizontal_right,
-                size: 50,
-                color: Colors.white,
-              ),
-            ),
-            top: -70,
-          )
-        ],
-      ),
-    );
-  }
-
-
-
-}
-
-//.then((value) => postDetailsToFirestore(email, rool)).catchError((e) {})
