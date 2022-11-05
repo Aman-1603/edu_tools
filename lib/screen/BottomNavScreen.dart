@@ -1,3 +1,4 @@
+import 'package:edu_tools/admin_modual/admin_homepage.dart';
 import 'package:edu_tools/metting/home_meeting_button.dart';
 import 'package:edu_tools/metting/meet_home_page.dart';
 import 'package:edu_tools/screen/home_nav_bar.dart';
@@ -21,9 +22,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     Home_Lobby_Screen(),
     checking_file(),
     meet_home_page(),
-    // teacher_home(),
     addnote(),
-
   ];
   int _currentIndex = 0;
 

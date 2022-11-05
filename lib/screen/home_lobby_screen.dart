@@ -1,8 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:edu_tools/admin_modual/admin_test.dart';
 import 'package:edu_tools/screen/home_nav_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
+
+import '../admin_modual/admin_homepage.dart';
 import '../metting/NavBar.dart';
 import '../widgets/custom_app_bar.dart';
+
+int passingdata = 0;
 class Home_Lobby_Screen extends StatefulWidget {
   const Home_Lobby_Screen({Key? key}) : super(key: key);
 
@@ -13,9 +20,17 @@ class Home_Lobby_Screen extends StatefulWidget {
 class _Home_Lobby_ScreenState extends State<Home_Lobby_Screen> {
   @override
   Widget build(BuildContext context) {
+    CollectionReference ref = FirebaseFirestore.instance.collection('users');
+
+
+
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
 
+
+      //adding
+
+      //finish
 
       drawer: HomeNavBar(),
       // appBar: CustomAppBar(),
@@ -24,6 +39,43 @@ class _Home_Lobby_ScreenState extends State<Home_Lobby_Screen> {
         elevation: 0,
         title: const Text('Edutools',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
         centerTitle: true,
+
+
+        //adding admin iocn
+        actions: <Widget>[
+
+
+          IconButton(
+
+            icon: Icon(
+              Icons.admin_panel_settings,
+              color: Colors.white,
+
+            ),
+
+            onPressed: ()async{
+              // do something
+             await FirebaseFirestore.instance.collection("users").doc("7UfsImhJQhcfq9ImSye8CVSQZL92").snapshots().forEach((element){
+                if(element.data()?['wrool']=="Teacher") {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Admin_test(),
+                      ));
+                }else{
+                  Fluttertoast.showToast(
+                    msg: "Sorry you canont acces it",
+                  );
+                } });
+          },
+          )
+
+
+
+        ],
+
+
+
       ),
 
 
@@ -58,6 +110,7 @@ class _Home_Lobby_ScreenState extends State<Home_Lobby_Screen> {
          child: Column(
            mainAxisAlignment: MainAxisAlignment.center,
            children: <Widget>[
+
              Text('Hello Learners',
              textAlign: TextAlign.center,
              style: const TextStyle(color: Colors.white,fontSize: 25.0,fontWeight: FontWeight.bold,

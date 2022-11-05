@@ -14,7 +14,7 @@ final kTitle = TextStyle(
 
 final kTitle2 = TextStyle(
   fontFamily: 'Klasik',
-  fontSize: SizeConfig.blockSizeH! * 6,
+  fontSize: SizeConfig.blockSizeH,
   color: kSecondaryColor,
 );
 

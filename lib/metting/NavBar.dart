@@ -1,3 +1,4 @@
+import 'package:edu_tools/teacher_modual/addpost.dart';
 import 'package:flutter/material.dart';
 import '../resources/auth_methods.dart';
 import 'history_meeting_screen.dart';
@@ -69,8 +70,11 @@ class _NavBar extends State<NavBar> {
             ),
             ListTile(
               leading: Icon(Icons.join_full),
-              title: Text("Join Meeting"),
-              onTap: () => {},
+              title: Text("Join Meeting/add post"),
+              onTap: () => {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => addnote()))
+              },
             ),
 
             ListTile(

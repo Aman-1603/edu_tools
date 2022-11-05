@@ -20,15 +20,19 @@ class _main_screenState extends State<main_screen> {
 
       debugShowCheckedModeBanner: false,
       title: 'Edutools',
+
       theme: ThemeData(
         textTheme: GoogleFonts.manropeTextTheme(
           Theme.of(context).textTheme,
         ),
+
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: kScaffoldBackground,
       ),
+
       home: BottomNavScreen(),
 
     );
+
   }
 }

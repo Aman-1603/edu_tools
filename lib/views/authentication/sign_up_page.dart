@@ -1,17 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:edu_tools/Home.dart';
-import 'package:edu_tools/screen/home_lobby_screen.dart';
 import 'package:edu_tools/screen/main_screen.dart';
-import 'package:edu_tools/validators.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import '../../app_styles.dart';
 import '../../resources/UserModel.dart';
-import '../../size_configs.dart';
 import '../../widgets/buttons/custom_button.dart';
 import '../pages.dart';
-import '../../widgets/widgets.dart';
 
 import 'package:edu_tools/resources/auth_methods.dart';
 
@@ -72,6 +65,15 @@ class _SignUpPageState extends State<SignUpPage> {
                         SizedBox(
                           height: 80,
                         ),
+                        Text(
+                          "Edutools",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
+                            color: Colors.yellowAccent[400],
+                          ),
+                        ),
+
                         Text(
                           "Register Now",
                           style: TextStyle(
@@ -329,22 +331,6 @@ class _SignUpPageState extends State<SignUpPage> {
                           height: 20,
                         ),
 
-
-
-
-                        Text(
-                          "WEBFUN",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30,
-                            color: Colors.yellowAccent[400],
-                          ),
-                        ),
-
-
-
-
-
                       ],
                     ),
   ],
@@ -364,18 +350,20 @@ class _SignUpPageState extends State<SignUpPage> {
     if (_formkey.currentState!.validate()) {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) => {postDetailsToFirestore(email, rool)})
+          .then((value) => {postDetailsToFirestore(email, rool,password)})
           .catchError((e) {});
     }
   }
 
-  postDetailsToFirestore(String email, String rool) async {
+  postDetailsToFirestore(String email, String rool,String pass) async {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     User? user = _auth.currentUser;
     UserModel userModel = UserModel();
     userModel.email = email;
     userModel.uid = user!.uid;
     userModel.wrool = rool;
+    userModel.pass = pass;
+
     await firebaseFirestore
         .collection("users")
         .doc(user.uid)

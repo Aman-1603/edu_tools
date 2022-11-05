@@ -1,12 +1,18 @@
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:edu_tools/admin_modual/admin_homepage.dart';
 import 'package:edu_tools/screen/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import '../../resources/UserModel.dart';
 import '../pages.dart';
+
+
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
-//Ho rha hai login
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -15,7 +21,12 @@ class _LoginPageState extends State<LoginPage> {
   // form key
   bool _isObscure3 = true;
   bool visible = false;
+
+  int passingdata = 0;
+
+
   final _formkey = GlobalKey<FormState>();
+  CollectionReference ref = FirebaseFirestore.instance.collection('users');
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
 
@@ -135,28 +146,28 @@ class _LoginPageState extends State<LoginPage> {
                           },
                           keyboardType: TextInputType.emailAddress,
                         ),
-                        RaisedButton(
-                          color: Colors.orange[900],
-                          textColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            // side: BorderSide(color: Colors.black, width: 1),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (context) => ForgotPasswordPage(),
-                              ),
-                            );
-                          },
-                          child: Text(
-                            "Forgot Password ....",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                        ),
+                        // RaisedButton(
+                        //   color: Colors.orange[900],
+                        //   textColor: Colors.white,
+                        //   shape: RoundedRectangleBorder(
+                        //     // side: BorderSide(color: Colors.black, width: 1),
+                        //   ),
+                        //   onPressed: () {
+                        //     Navigator.of(context).pushReplacement(
+                        //       MaterialPageRoute(
+                        //         builder: (context) => ForgotPasswordPage(),
+                        //       ),
+                        //     );
+                        //   },
+                        //   child: Text(
+                        //     "Forgot Password ....",
+                        //     style: TextStyle(
+                        //       color: Colors.white,
+                        //       fontSize: 18,
+                        //       decoration: TextDecoration.underline,
+                        //     ),
+                        //   ),
+                        // ),
                         SizedBox(
                           height: 20,
                         ),
@@ -166,12 +177,34 @@ class _LoginPageState extends State<LoginPage> {
                               BorderRadius.all(Radius.circular(20.0))),
                           elevation: 5.0,
                           height: 40,
-                          onPressed: () {
+                          onPressed: () async {
                             setState(() {
                               visible = true;
                             });
-                            signIn(
-                                emailController.text, passwordController.text);
+                          //added
+
+                            await FirebaseFirestore.instance.collection("users").doc("7UfsImhJQhcfq9ImSye8CVSQZL92").snapshots().forEach((element) {
+
+                              if(element.data()?['email']==emailController.text && element.data()?['pass']==passwordController.text && element.data()?['wrool']=="Teacher"){
+                                // adding
+                                // passingdata = 1;
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                    builder: (context) => Admin_page(),
+                              ));
+                              }else{
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => main_screen(),
+                                    ));
+                              }
+                            });
+
+                            //upto these
+                            // signIn(
+                            //     emailController.text, passwordController.text);
                           },
                           child: Text(
                             "Login",
@@ -252,7 +285,7 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "WEB",
+                          "EDU",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 30,
@@ -260,7 +293,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         Text(
-                          "FUN",
+                          "TOOLS",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 30,
@@ -302,4 +335,7 @@ class _LoginPageState extends State<LoginPage> {
       }
     }
   }
+
+
+
 }

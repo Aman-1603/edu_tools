@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../app_styles.dart';
-import '../metting/NavBar.dart';
 
 class addnote extends StatelessWidget {
   TextEditingController title = TextEditingController();

@@ -49,17 +49,17 @@ class _Start_ScreenState extends State<Start_Screen> {
 
             Row( mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                RaisedButton(
-                  padding: EdgeInsets.only(left: 30.0,right: 30.0,top: 10.0,bottom: 10.0),
-                  onPressed: (){},
-                child: Text('LOGIN',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white,),
-
-                ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  color: Colors.orange,
-                ),
+                // RaisedButton(
+                //   padding: EdgeInsets.only(left: 30.0,right: 30.0,top: 10.0,bottom: 10.0),
+                //   onPressed: (){},
+                // child: Text('LOGIN',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white,),
+                //
+                // ),
+                //   shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.circular(10.0),
+                //   ),
+                //   color: Colors.orange,
+                // ),
 
 
                 SizedBox(width: 20.0),
@@ -67,16 +67,16 @@ class _Start_ScreenState extends State<Start_Screen> {
                 //another button named Register Button
                 //Register Button
 
-                RaisedButton(
-                  padding: EdgeInsets.only(left: 30.0,right: 30.0,top: 10.0,bottom: 10.0),
+               ElevatedButton(
+                  // padding: EdgeInsets.only(left: 30.0,right: 30.0,top: 10.0,bottom: 10.0),
                   onPressed: (){},
                   child: Text('REGISTER',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white,),
 
                   ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  color: Colors.orange,
+                  // shape: RoundedRectangleBorder(
+                  //   borderRadius: BorderRadius.circular(10.0),
+                  // ),
+                  // color: Colors.orange,
                 ),
 
               ],
