@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:edu_tools/admin_modual/admin_test.dart';
+import 'package:edu_tools/admin_modual/admin_mainpage.dart';
 import 'package:edu_tools/screen/home_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 
-import '../admin_modual/admin_homepage.dart';
 import '../metting/NavBar.dart';
 import '../widgets/custom_app_bar.dart';
 
@@ -60,7 +59,7 @@ class _Home_Lobby_ScreenState extends State<Home_Lobby_Screen> {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Admin_test(),
+                        builder: (context) => Admin_mainpage(),
                       ));
                 }else{
                   Fluttertoast.showToast(

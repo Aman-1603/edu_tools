@@ -1,6 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:edu_tools/admin_modual/admin_homepage.dart';
+import 'package:edu_tools/admin_modual/admin_mainpage.dart';
 import 'package:edu_tools/screen/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -191,7 +191,7 @@ class _LoginPageState extends State<LoginPage> {
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                    builder: (context) => Admin_page(),
+                                    builder: (context) => Admin_mainpage(),
                               ));
                               }else{
                                 Navigator.pushReplacement(
