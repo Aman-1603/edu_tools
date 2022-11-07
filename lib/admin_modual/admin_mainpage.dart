@@ -58,6 +58,7 @@ class _Admin_mainpageState extends State<Admin_mainpage> {
 
       backgroundColor: Color(0xff392850),
       body: Column(
+
         children: <Widget>[
           SizedBox(
             height: 110,
@@ -106,9 +107,10 @@ class _Admin_mainpageState extends State<Admin_mainpage> {
             ),
           ),
           SizedBox(
-            height: 40,
+            height: 20,
           ),
-          GridDashboard()
+
+         Expanded(child: GridDashboard())
         ],
       ),
     );

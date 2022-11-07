@@ -1,112 +1,156 @@
+import 'package:edu_tools/teacher_modual/addpost.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class GridDashboard extends StatelessWidget {
-  Items item1 = new Items(
-      title: "Calendar",
-      subtitle: "March, Wednesday",
-      event: "3 Events",
-      img: "assets/calendar.png");
-
-  Items item2 = new Items(
-    title: "Groceries",
-    subtitle: "Bocali, Apple",
-    event: "4 Items",
-    img: "assets/food.png",
-  );
-  Items item3 = new Items(
-    title: "Locations",
-    subtitle: "Lucy Mao going to Office",
-    event: "",
-    img: "assets/map.png",
-  );
-  Items item4 = new Items(
-    title: "Activity",
-    subtitle: "Rose favirited your Post",
-    event: "",
-    img: "assets/festival.png",
-
-  );
-  Items item5 = new Items(
-    title: "To do",
-    subtitle: "Homework, Design",
-    event: "4 Items",
-    img: "assets/todo.png",
-  );
-  Items item6 = new Items(
-    title: "Settings",
-    subtitle: "",
-    event: "2 Items",
-    img: "assets/setting.png",
-  );
+  const GridDashboard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<Items> myList = [item1, item2, item3, item4, item5, item6];
-    var color = 0xff453658;
-    return Flexible(
-      child: GridView.count(
-          childAspectRatio: 1.0,
-          padding: EdgeInsets.only(left: 16, right: 16),
-          crossAxisCount: 2,
-          crossAxisSpacing: 18,
-          mainAxisSpacing: 18,
-          children: myList.map((data) {
-            return Container(
-              decoration: BoxDecoration(
-                  color: Color(color), borderRadius: BorderRadius.circular(10)),
+    return Scaffold(
+      backgroundColor: Color(0xff392850),
+      body: Container(child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: GridView(children: [
+          InkWell(
+            onTap: (){
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (_) => addnote()));
+              // Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+            },
+            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(0.05),),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
+                children: [
                   Image.asset(
-                    data.img,
-                    width: 42,
+                    'assets/post_message.png',
+                    height: 70,
+                    width: 70,
                   ),
                   SizedBox(
-                    height: 14,
+                    height: 10,
                   ),
-                  Text(
-                    data.title,
-                    style: GoogleFonts.openSans(
-                        textStyle: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600)),
+                  Text("Post Message",style: TextStyle(color: Colors.white,fontSize: 20),)
+                ],),
+            ),
+          ),
+          InkWell(
+            onTap: (){
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (_) => addnote()));
+            },
+            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(0.05),),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/calendar.png',
+                    height: 70,
+                    width: 70,
                   ),
                   SizedBox(
-                    height: 8,
+                    height: 10,
                   ),
-                  Text(
-                    data.subtitle,
-                    style: GoogleFonts.openSans(
-                        textStyle: TextStyle(
-                            color: Colors.white38,
-                            fontSize: 10,
-                            fontWeight: FontWeight.w600)),
+                  Text("Calendar",style: TextStyle(color: Colors.white,fontSize: 20),)
+                ],),
+            ),
+          ),
+          InkWell(
+            onTap: (){
+              // Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+            },
+            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(0.05),),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/todo.png',
+                    height: 70,
+                    width: 70,
                   ),
                   SizedBox(
-                    height: 14,
+                    height: 10,
                   ),
-                  Text(
-                    data.event,
-                    style: GoogleFonts.openSans(
-                        textStyle: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 11,
-                            fontWeight: FontWeight.w600)),
+                  Text("todo",style: TextStyle(color: Colors.white,fontSize: 20),)
+                ],),
+            ),
+          ),
+          InkWell(
+            onTap: (){
+              // Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+            },
+            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(0.05),),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+
+                  // Image.asset("assets/calendar.png"),
+                  // Icon(Icons.book,size: 40,color: Colors.white,),
+                  Image.asset(
+                    'assets/profile.png',
+                    height: 70,
+                    width: 70,
                   ),
-                ],
-              ),
-            );
-          }).toList()),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text("Profile",style: TextStyle(color: Colors.white,fontSize: 20),)
+                ],),
+            ),
+          ),
+
+          InkWell(
+            onTap: (){
+              // Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+            },
+            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(0.05),),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+
+                  // Image.asset("assets/calendar.png"),
+                  // Icon(Icons.book,size: 40,color: Colors.white,),
+                  Image.asset(
+                    'assets/syllabus.png',
+                    height: 70,
+                    width: 70,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text("Syllabus",style: TextStyle(color: Colors.white,fontSize: 20),)
+                ],),
+            ),
+          ),
+
+          InkWell(
+            onTap: (){
+              // Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+            },
+            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(0.05),),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+
+                  // Image.asset("assets/calendar.png"),
+                  // Icon(Icons.book,size: 40,color: Colors.white,),
+                  Image.asset(
+                    'assets/setting.png',
+                    height: 70,
+                    width: 70,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text("Setting",style: TextStyle(color: Colors.white,fontSize: 20),)
+                ],),
+            ),
+          ),
+
+        ],
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,mainAxisSpacing: 10,crossAxisSpacing: 10),
+        ),
+      ),),
     );
   }
-}
-
-class Items {
-  String title;
-  String subtitle;
-  String event;
-  String img;
-  Items({required this.title, required this.subtitle, required this.event, required this.img});
 }

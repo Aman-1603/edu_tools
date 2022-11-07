@@ -38,6 +38,20 @@ class _SignUpPageState extends State<SignUpPage> {
   var _currentItemSelected = "Student";
   var rool = "Student";
 
+  var semester= [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+  ];
+
+  var _currentsemSelected = "1";
+  var sem = "1";
+
   //for login signup using google
   final AuthMethods _authMethods = AuthMethods();
   //upto this
@@ -238,6 +252,10 @@ class _SignUpPageState extends State<SignUpPage> {
                                     ),
                                   ),
                                 );
+
+
+
+
                               }).toList(),
                               onChanged: (newValueSelected) {
                                 setState(() {
@@ -249,6 +267,58 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                           ],
                         ),
+
+                        //added
+
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Sem : ",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                            DropdownButton<String>(
+                              dropdownColor: Colors.blue[900],
+                              isDense: true,
+                              isExpanded: false,
+                              iconEnabledColor: Colors.white,
+                              focusColor: Colors.white,
+                              items: semester.map((String dropDownStringItem) {
+                                return DropdownMenuItem<String>(
+                                  value: dropDownStringItem,
+                                  child: Text(
+                                    dropDownStringItem,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                );
+
+
+
+
+                              }).toList(),
+                              onChanged: (newValueSelected) {
+                                setState(() {
+                                  _currentsemSelected = newValueSelected!;
+                                  sem = newValueSelected;
+                                });
+                              },
+                              value: _currentsemSelected,
+                            ),
+                          ],
+                        ),
+
+                        //upto
                         SizedBox(
                           height: 20,
                         ),
@@ -350,12 +420,12 @@ class _SignUpPageState extends State<SignUpPage> {
     if (_formkey.currentState!.validate()) {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) => {postDetailsToFirestore(email, rool,password)})
+          .then((value) => {postDetailsToFirestore(email, rool,password,sem)})
           .catchError((e) {});
     }
   }
 
-  postDetailsToFirestore(String email, String rool,String pass) async {
+  postDetailsToFirestore(String email, String rool,String pass, String sem) async {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     User? user = _auth.currentUser;
     UserModel userModel = UserModel();
@@ -363,6 +433,7 @@ class _SignUpPageState extends State<SignUpPage> {
     userModel.uid = user!.uid;
     userModel.wrool = rool;
     userModel.pass = pass;
+    userModel.sem = sem;
 
     await firebaseFirestore
         .collection("users")

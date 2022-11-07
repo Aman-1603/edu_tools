@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../resources/auth_methods.dart';
+import '../teacher_modual/addpost.dart';
 class HomeNavBar extends StatefulWidget {
   const HomeNavBar({Key? key}) : super(key: key);
   @override
@@ -54,7 +55,10 @@ class _HomeNavBar extends State<HomeNavBar> {
           ListTile(
             leading: Icon(Icons.chat),
             title: Text("Chatting"),
-            onTap: () => {},
+            onTap: () => {
+            Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (_) => addnote()))
+            },
           ),
           ListTile(
             leading: Icon(Icons.contact_phone),
@@ -69,7 +73,9 @@ class _HomeNavBar extends State<HomeNavBar> {
           ListTile(
             leading: Icon(Icons.join_full),
             title: Text("Join Meeting"),
-            onTap: () => {},
+            onTap: () => {
+
+            },
           ),
 
           ListTile(

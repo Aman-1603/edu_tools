@@ -86,6 +86,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                 filled: true,
                 border: InputBorder.none,
                 hintText: 'Room ID',
+                hintStyle: TextStyle(fontSize: 20.0,color: Colors.white),
                 contentPadding: EdgeInsets.fromLTRB(16, 8, 0, 0),
               ),
             ),
@@ -94,6 +95,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
             height: 60,
             child: TextField(
               controller: nameController,
+              style: TextStyle(color: Colors.white),
               maxLines: 1,
               textAlign: TextAlign.center,
               keyboardType: TextInputType.number,
@@ -102,6 +104,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                 filled: true,
                 border: InputBorder.none,
                 hintText: 'Name',
+                hintStyle: TextStyle(fontSize: 20.0,color: Colors.white),
                 contentPadding: EdgeInsets.fromLTRB(16, 8, 0, 0),
               ),
             ),
@@ -114,7 +117,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
               child: Text(
                 'Join',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 22,fontWeight: FontWeight.bold
                 ),
               ),
             ),

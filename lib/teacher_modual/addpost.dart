@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:edu_tools/admin_modual/admin_mainpage.dart';
 import 'package:edu_tools/teacher_modual/posts_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,13 @@ class addnote extends StatelessWidget {
         titleTextStyle: kTitle2,
 
         actions: [
+          
+          IconButton(onPressed: () {
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (_) => Admin_mainpage()));
+          }, icon: Icon(Icons.arrow_left)),
+          
+          
           MaterialButton(
             onPressed: () {
               ref.add({

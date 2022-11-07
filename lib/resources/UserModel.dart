@@ -3,14 +3,16 @@ class UserModel {
   String? wrool;
   String? uid;
   String? pass;
+  String? sem;
 // receiving data
-  UserModel({this.uid, this.email, this.wrool, this.pass});
+  UserModel({this.uid, this.email, this.wrool, this.pass, this.sem});
   factory UserModel.fromMap(map) {
     return UserModel(
       uid: map['uid'],
       email: map['email'],
       wrool: map['wrool'],
-      pass: map['pass']
+      pass: map['pass'],
+        sem: map['sem']
     );
   }
 // sending data
@@ -20,6 +22,7 @@ class UserModel {
       'email': email,
       'wrool': wrool,
       'pass' : pass,
+      'sem' : sem,
     };
   }
 }
