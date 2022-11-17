@@ -183,7 +183,7 @@ class _LoginPageState extends State<LoginPage> {
                             });
                           //added
 
-                            await FirebaseFirestore.instance.collection("users").doc("7UfsImhJQhcfq9ImSye8CVSQZL92").snapshots().forEach((element) {
+                            await FirebaseFirestore.instance.collection("users").doc("bIx8oTsJ82cXbruTpyVWoe4qDgj1").snapshots().forEach((element) {
 
                               if(element.data()?['email']==emailController.text && element.data()?['pass']==passwordController.text && element.data()?['wrool']=="Teacher"){
                                 // adding

@@ -28,6 +28,7 @@ class _SignUpPageState extends State<SignUpPage> {
   new TextEditingController();
   final TextEditingController name = new TextEditingController();
   final TextEditingController emailController = new TextEditingController();
+  final TextEditingController studentname = new TextEditingController();
   final TextEditingController mobile = new TextEditingController();
   bool _isObscure = true;
   bool _isObscure2 = true;
@@ -99,8 +100,42 @@ class _SignUpPageState extends State<SignUpPage> {
                         SizedBox(
                           height: 10,
                         ),
+
+                        //added
+
+                        TextFormField(
+                          controller: studentname,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            hintText: 'Name',
+                            enabled: true,
+                            contentPadding: const EdgeInsets.only(
+                                left: 14.0, bottom: 8.0, top: 8.0),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: new BorderSide(color: Colors.white),
+                              borderRadius: new BorderRadius.circular(20),
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: new BorderSide(color: Colors.white),
+                              borderRadius: new BorderRadius.circular(20),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value!.length == 0) {
+                              return "Email cannot be empty";
+                            }
+                            else {
+                              return null;
+                            }
+                          },
+                          onChanged: (value) {},
+                          keyboardType: TextInputType.text,
+                        ),
+
+                        //upto
                         SizedBox(
-                          height: 50,
+                          height: 20,
                         ),
                         TextFormField(
                           controller: emailController,
@@ -359,7 +394,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 setState(() {
                                   showProgress = true;
                                 });
-                                signUp(emailController.text,
+                                signUp(studentname.text,emailController.text,
                                     passwordController.text, rool);
                               },
                               child: Text(
@@ -415,20 +450,21 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  void signUp(String email, String password, String rool) async {
+  void signUp(String studentname,String email, String password, String rool) async {
     CircularProgressIndicator();
     if (_formkey.currentState!.validate()) {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) => {postDetailsToFirestore(email, rool,password,sem)})
+          .then((value) => {postDetailsToFirestore(studentname,email, rool,password,sem)})
           .catchError((e) {});
     }
   }
 
-  postDetailsToFirestore(String email, String rool,String pass, String sem) async {
+  postDetailsToFirestore(String studentname,String email, String rool,String pass, String sem) async {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     User? user = _auth.currentUser;
     UserModel userModel = UserModel();
+    userModel.studentname = studentname;
     userModel.email = email;
     userModel.uid = user!.uid;
     userModel.wrool = rool;

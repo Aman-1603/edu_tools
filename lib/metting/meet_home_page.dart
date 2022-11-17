@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:edu_tools/Schedual%20Task/schedual_main.dart';
 import 'package:edu_tools/metting/home_meeting_button.dart';
 import 'package:edu_tools/metting/join_meeting_screen.dart';
 import 'package:edu_tools/resources/jitsi_meet_methods.dart';
@@ -59,7 +60,13 @@ class meet_home_page extends StatelessWidget {
             ),
 
             HomeMettingButton(
-              onPressed: () {},
+              onPressed: () {
+
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                        builder: (context) => MyHomePage(title: '',)));
+
+              },
               text: 'Schedual',
               icon: Icons.date_range,
             ),

@@ -1,54 +1,62 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:edu_tools/app_styles.dart';
-import 'package:edu_tools/metting/meet_home_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../screen/BottomNavScreen.dart';
-import 'addpost.dart';
-import 'editpost.dart';
+import '../resources/UserModel.dart';
+import '../views/authentication/login_page.dart';
 
-class posts_screen extends StatefulWidget {
+class Student extends StatefulWidget {
+  String id;
+  Student({required this.id});
   @override
-  _posts_screenState createState() => _posts_screenState();
+  _StudentState createState() => _StudentState(id: id);
 }
 
-class _posts_screenState extends State<posts_screen> {
+class _StudentState extends State<Student> {
+  String id;
+  var rooll;
+  var emaill;
+  UserModel loggedInUser = UserModel();
+
+  _StudentState({required this.id});
+  @override
+  void initState() {
+    super.initState();
+    FirebaseFirestore.instance
+        .collection("users") //.where('uid', isEqualTo: user!.uid)
+        .doc(id)
+        .get()
+        .then((value) {
+      this.loggedInUser = UserModel.fromMap(value.data());
+    }).whenComplete(() {
+      CircularProgressIndicator();
+      setState(() {
+        emaill = loggedInUser.email.toString();
+        rooll = loggedInUser.wrool.toString();
+        id = loggedInUser.uid.toString();
+      });
+    });
+  }
+
+  @override
   final Stream<QuerySnapshot> _usersStream =
   FirebaseFirestore.instance.collection('posts').snapshots();
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (_) => addnote()));
-        },
-        child: Icon(
-          Icons.add,
-        ),
-      ),
       appBar: AppBar(
-
-        leading: IconButton(
-          icon: const Icon(
-            CupertinoIcons.arrow_left,
-            color: Colors.black,
-            size: 30,
-          ),
-          onPressed: () {
-
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (_) => BottomNavScreen()));
-
-          },
+        title: Text(
+          "Student",
         ),
-
-
-        title: Text('Posts'),
-        centerTitle: true,
-        titleTextStyle: kTitle2,
-
+        actions: [
+          IconButton(
+            onPressed: () {
+              logout(context);
+            },
+            icon: Icon(Icons.logout),
+          ),
+        ],
       ),
       body: StreamBuilder(
         stream: _usersStream,
@@ -64,21 +72,13 @@ class _posts_screenState extends State<posts_screen> {
 
           return Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(12),
             ),
             child: ListView.builder(
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (_, index) {
                 return GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) =>
-                            editnote(docid: snapshot.data!.docs[index]),
-                      ),
-                    );
-                  },
+                  onTap: () {},
                   child: Column(
                     children: [
                       SizedBox(
@@ -91,15 +91,11 @@ class _posts_screenState extends State<posts_screen> {
                         ),
                         child: ListTile(
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(25),
-                                  topRight: Radius.circular(25),
-                                  bottomRight: Radius.circular(10),
-                                  bottomLeft: Radius.circular(10))),
-                          tileColor: Colors.indigo,
-                          textColor: Colors.white,
-                          iconColor: Colors.white,
-                          leading: Icon(Icons.light),
+                            borderRadius: BorderRadius.circular(10),
+                            side: BorderSide(
+                              color: Colors.black,
+                            ),
+                          ),
                           title: Text(
                             snapshot.data!.docChanges[index].doc['title'],
                             style: TextStyle(
@@ -119,6 +115,17 @@ class _posts_screenState extends State<posts_screen> {
             ),
           );
         },
+      ),
+    );
+  }
+
+  Future<void> logout(BuildContext context) async {
+    CircularProgressIndicator();
+    await FirebaseAuth.instance.signOut();
+
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => LoginPage(),
       ),
     );
   }

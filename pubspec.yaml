@@ -49,12 +49,15 @@ dependencies:
   cloud_firestore: ^3.1.10
   google_sign_in: ^5.0.1
   lottie: ^1.4.2
+  flutter_local_notifications: ^9.3.1
+  timezone: ^0.8.0
+  table_calendar: ^2.1.0
 
 
 
 
 
-#  added
+  #  added
 
 
 

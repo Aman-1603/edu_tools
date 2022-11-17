@@ -1,54 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:edu_tools/app_styles.dart';
-import 'package:edu_tools/metting/meet_home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../screen/BottomNavScreen.dart';
-import 'addpost.dart';
-import 'editpost.dart';
-
-class posts_screen extends StatefulWidget {
+class studentList extends StatefulWidget {
   @override
-  _posts_screenState createState() => _posts_screenState();
+  _studentListState createState() => _studentListState();
 }
 
-class _posts_screenState extends State<posts_screen> {
-  final Stream<QuerySnapshot> _usersStream =
-  FirebaseFirestore.instance.collection('posts').snapshots();
+class _studentListState extends State<studentList> {
+  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance
+      .collection('users')
+      .where('wrool', isEqualTo: 'Student')
+      .snapshots();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (_) => addnote()));
-        },
-        child: Icon(
-          Icons.add,
-        ),
-      ),
       appBar: AppBar(
-
-        leading: IconButton(
-          icon: const Icon(
-            CupertinoIcons.arrow_left,
-            color: Colors.black,
-            size: 30,
-          ),
-          onPressed: () {
-
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (_) => BottomNavScreen()));
-
-          },
-        ),
-
-
-        title: Text('Posts'),
-        centerTitle: true,
-        titleTextStyle: kTitle2,
-
+        title: Text('Students'),
       ),
       body: StreamBuilder(
         stream: _usersStream,
@@ -64,21 +32,13 @@ class _posts_screenState extends State<posts_screen> {
 
           return Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(12),
             ),
             child: ListView.builder(
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (_, index) {
                 return GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) =>
-                            editnote(docid: snapshot.data!.docs[index]),
-                      ),
-                    );
-                  },
+                  onTap: () {},
                   child: Column(
                     children: [
                       SizedBox(
@@ -101,11 +61,22 @@ class _posts_screenState extends State<posts_screen> {
                           iconColor: Colors.white,
                           leading: Icon(Icons.light),
                           title: Text(
-                            snapshot.data!.docChanges[index].doc['title'],
+                            "Email : " + snapshot.data!.docChanges[index].doc['email'] + "\n" + " Name : " + snapshot.data!.docChanges[index].doc['studentname']
+                            + "\n" + "Password : " + snapshot.data!.docChanges[index].doc['pass'] + "\n" + "Semester : " + snapshot.data!.docChanges[index].doc['sem'],
+
                             style: TextStyle(
                               fontSize: 20,
                             ),
                           ),
+                          // subtitle: Text(
+                          //   "Name : " + snapshot.data!.docChanges[index].doc['studentname'],
+                          //
+                          //   style: TextStyle(
+                          //     fontSize: 20,
+                          //   ),
+                          // ),
+
+
                           contentPadding: EdgeInsets.symmetric(
                             vertical: 12,
                             horizontal: 16,
