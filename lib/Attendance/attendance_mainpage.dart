@@ -20,8 +20,7 @@ class _mainpageState extends State<mainpage> {
     '6',
     '7',
     '8',
-    '9',
-    '10',
+
   ];
   var _currentItemSelected = "1";
   var rool = "1";

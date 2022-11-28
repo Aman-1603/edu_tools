@@ -1,3 +1,4 @@
+import 'package:edu_tools/group%20chat/chatpage.dart';
 import 'package:flutter/material.dart';
 import '../resources/auth_methods.dart';
 import '../teacher_modual/addpost.dart';
@@ -63,7 +64,8 @@ class _HomeNavBar extends State<HomeNavBar> {
           ListTile(
             leading: Icon(Icons.contact_phone),
             title: Text("Contact"),
-            onTap: () => {},
+            onTap: () => { Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (_) => chatpage(email: '',)))},
           ),
           ListTile(
             leading: Icon(Icons.create),

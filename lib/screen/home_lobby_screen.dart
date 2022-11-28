@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:edu_tools/TODOS/todohome.dart';
 import 'package:edu_tools/admin_modual/admin_mainpage.dart';
 import 'package:edu_tools/resources/UserModel.dart';
 import 'package:edu_tools/screen/home_nav_bar.dart';
@@ -105,11 +106,14 @@ class _Home_Lobby_ScreenState extends State<Home_Lobby_Screen> {
         physics: ClampingScrollPhysics(),
         slivers: <Widget>[
           _buildHeader(screenHeight),
-
         ],
+
       ),
+
     );
   }
+
+
 
   SliverToBoxAdapter _buildHeader(double screenHeight) {
        return  SliverToBoxAdapter(child: Container(padding: const EdgeInsets.all(20.0),
@@ -139,11 +143,15 @@ class _Home_Lobby_ScreenState extends State<Home_Lobby_Screen> {
              ),
              Text("Current Semester is ",style: const TextStyle(color: Colors.white,fontSize: 20.0,fontWeight: FontWeight.bold,
              ),)
+
            ],
 
          ),
 
     )
        );
+
   }
+
+
   }

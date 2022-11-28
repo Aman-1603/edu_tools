@@ -70,11 +70,11 @@ class _chatpageState extends State<chatpage> {
                           left: 14.0, bottom: 8.0, top: 8.0),
                       focusedBorder: OutlineInputBorder(
                         borderSide: new BorderSide(color: Colors.purple),
-                        borderRadius: new BorderRadius.circular(10),
+                        borderRadius: new BorderRadius.circular(20),
                       ),
                       enabledBorder: UnderlineInputBorder(
                         borderSide: new BorderSide(color: Colors.purple),
-                        borderRadius: new BorderRadius.circular(10),
+                        borderRadius: new BorderRadius.circular(20),
                       ),
                     ),
                     validator: (value) {},

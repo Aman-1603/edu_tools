@@ -1,5 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:edu_tools/TODOS/todohome.dart';
 import 'package:edu_tools/admin_modual/admin_mainpage.dart';
 import 'package:edu_tools/screen/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -197,7 +198,7 @@ class _LoginPageState extends State<LoginPage> {
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => main_screen(),
+                                      builder: (context) => todoHome(),
                                     ));
                               }
                             });
@@ -323,7 +324,7 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => main_screen(),
+            builder: (context) => todoHome(),
           ),
         );
       } on FirebaseAuthException catch (e) {

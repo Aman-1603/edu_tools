@@ -1,4 +1,5 @@
 import 'package:edu_tools/Attendance/attendance_main.dart';
+import 'package:edu_tools/TODOS/todohome.dart';
 import 'package:edu_tools/admin_modual/Teacher.dart';
 import 'package:edu_tools/screen/UserProfile.dart';
 import 'package:edu_tools/teacher_modual/addpost.dart';
@@ -49,7 +50,7 @@ class GridDashboard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/calendar.png',
+                    'assets/attendance.png',
                     height: 70,
                     width: 70,
                   ),
@@ -62,7 +63,7 @@ class GridDashboard extends StatelessWidget {
           ),
           InkWell(
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>todoHome()));
             },
             child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(0.05),),
               child: Column(

@@ -1,3 +1,5 @@
+import 'package:edu_tools/admin_modual/admin_mainpage.dart';
+import 'package:edu_tools/admin_modual/griddashboard.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -53,8 +55,22 @@ class _HomeState extends State<Home> {
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(
+            CupertinoIcons.arrow_left,
+            color: Colors.black,
+            size: 28,
+          ),
+          onPressed: () {
+
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (_) => Admin_mainpage()));
+
+          },
+        ),
         title: Text('Attendance app'),
       ),
+
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

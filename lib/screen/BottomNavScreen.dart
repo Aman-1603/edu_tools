@@ -1,3 +1,4 @@
+import 'package:edu_tools/TODOS/todohome.dart';
 import 'package:edu_tools/group%20chat/chatpage.dart';
 import 'package:edu_tools/metting/home_meeting_button.dart';
 import 'package:edu_tools/metting/meet_home_page.dart';
@@ -19,7 +20,8 @@ class BottomNavScreen extends StatefulWidget {
 
 class _BottomNavScreenState extends State<BottomNavScreen> {
   final List _screens = [
-    Home_Lobby_Screen(),
+    // Home_Lobby_Screen(),
+    todoHome(),
     chatpage(email: '',),
     meet_home_page(),
     addnote(),
