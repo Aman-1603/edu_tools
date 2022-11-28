@@ -13,7 +13,7 @@ class _addState extends State<add> {
   TextEditingController div = TextEditingController();
   TextEditingController rolln = TextEditingController();
 
-  CollectionReference ref = FirebaseFirestore.instance.collection('users');
+  CollectionReference ref = FirebaseFirestore.instance.collection('attendance');
   var ww = '1A';
   var options = [
     '1',
@@ -24,8 +24,7 @@ class _addState extends State<add> {
     '6',
     '7',
     '8',
-    '9',
-    '10',
+
   ];
   var _currentItemSelected = "1";
   var rool = "1";
@@ -80,7 +79,7 @@ class _addState extends State<add> {
               children: [
                 Row(
                   children: [
-                    Text('Class : '),
+                    Text('Semester : '),
                     DropdownButton<String>(
                       dropdownColor: Color.fromARGB(255, 0, 255, 21),
                       isDense: true,
@@ -119,7 +118,7 @@ class _addState extends State<add> {
                 ),
                 Row(
                   children: [
-                    Text('Div : '),
+                    Text('Batch : '),
                     DropdownButton<String>(
                       dropdownColor: Color.fromARGB(255, 26, 255, 0),
                       isDense: true,

@@ -67,7 +67,7 @@ class _reporttState extends State<reportt> {
                 height: 20,
               ),
               pw.Text(
-                'Attendance sheet',
+                'Ganpat University Attendance sheet',
                 style: pw.TextStyle(
                   fontSize: 25,
                 ),

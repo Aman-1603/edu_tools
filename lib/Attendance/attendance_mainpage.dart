@@ -38,7 +38,7 @@ class _mainpageState extends State<mainpage> {
   @override
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance
-        .collection('users')
+        .collection('attendance')
         .where(
       'div',
       isEqualTo: ww,
