@@ -1,3 +1,4 @@
+import 'package:edu_tools/Attendance/attendance_main.dart';
 import 'package:edu_tools/admin_modual/Teacher.dart';
 import 'package:edu_tools/screen/UserProfile.dart';
 import 'package:edu_tools/teacher_modual/addpost.dart';
@@ -41,7 +42,7 @@ class GridDashboard extends StatelessWidget {
           InkWell(
             onTap: (){
               Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (_) => addnote()));
+                  context, MaterialPageRoute(builder: (context)=>Home()));
             },
             child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(0.05),),
               child: Column(
@@ -55,13 +56,13 @@ class GridDashboard extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  Text("Calendar",style: TextStyle(color: Colors.white,fontSize: 20),)
+                  Text("Attendance",style: TextStyle(color: Colors.white,fontSize: 20),)
                 ],),
             ),
           ),
           InkWell(
             onTap: (){
-              // Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
             },
             child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(0.05),),
               child: Column(
