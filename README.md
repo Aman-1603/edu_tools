@@ -4,6 +4,7 @@ Edu-Tools can be accessed from a smartphone. It is a technology-based study tool
 
 ![image](https://user-images.githubusercontent.com/59969732/205825032-e0ef0d15-d144-4235-b709-3e418fae8b9c.png)
 ![image](https://user-images.githubusercontent.com/59969732/205825071-cf9d1333-f2d8-4254-9395-ac3e9d0bcb04.png)
+
 If the user Open application for the first time it will show splash screen to show the information about application these is only for the first time after that user will be directly redirected to Login Page
 
 ![image](https://user-images.githubusercontent.com/59969732/205825094-57960cf8-54f8-4d74-9a03-e2e497bb88ed.png)
