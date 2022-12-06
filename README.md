@@ -8,9 +8,22 @@ Edu-Tools can be accessed from a smartphone. It is a technology-based study tool
 If the user Open application for the first time it will show splash screen to show the information about application these is only for the first time after that user will be directly redirected to Login Page
 
 ![image](https://user-images.githubusercontent.com/59969732/205825094-57960cf8-54f8-4d74-9a03-e2e497bb88ed.png)
+
+If user has an account, then, the user has to enter his / her correct credentials (Email and password).
+
 ![image](https://user-images.githubusercontent.com/59969732/205825108-49f30066-82bc-4f71-ab5e-32c23d7283d0.png)
+
+If user doesn’t have an account, he can click on the signup text and create a new one.
+
 ![image](https://user-images.githubusercontent.com/59969732/205825144-08282a4b-30bf-4d12-963e-115f97d4c346.png)
+
+
+If user enters correct credentials and then after clicking on the login button, app will redirect to the home page     
+
+
 ![home](https://user-images.githubusercontent.com/59969732/205825857-b6376a60-cc93-47b3-bb9b-a4fdaef0c01f.jpg)
+
+
 ![cha](https://user-images.githubusercontent.com/59969732/205825935-3666187d-6488-4a47-96b3-7fb4c8ee33ea.jpg)
 ![image](https://user-images.githubusercontent.com/59969732/205825971-8ebc1600-f5c2-4bcd-94d1-0afdd8b5ec82.png)
 ![image](https://user-images.githubusercontent.com/59969732/205826014-5c47e638-ca35-4735-934d-8e924c2d2b2b.png)
