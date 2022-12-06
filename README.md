@@ -23,19 +23,20 @@ If user enters correct credentials and then after clicking on the login button, 
 
 ![home](https://user-images.githubusercontent.com/59969732/205825857-b6376a60-cc93-47b3-bb9b-a4fdaef0c01f.jpg)
 
+Home page
 
 ![cha](https://user-images.githubusercontent.com/59969732/205825935-3666187d-6488-4a47-96b3-7fb4c8ee33ea.jpg)
 
-Home page
+chatting page
 
 ![image](https://user-images.githubusercontent.com/59969732/205825971-8ebc1600-f5c2-4bcd-94d1-0afdd8b5ec82.png)
 
-chatting page
+Here it is meeting page which is used to create meeting and joining page.
 
 
 ![image](https://user-images.githubusercontent.com/59969732/205826014-5c47e638-ca35-4735-934d-8e924c2d2b2b.png)
 
-Here it is meeting page which is used to create meeting and joining page.
+
 
 ![image](https://user-images.githubusercontent.com/59969732/205826034-16d17d97-d128-433c-909e-940c7e94583e.png)
 
