@@ -77,11 +77,19 @@ After posting message to the student wrong message can be update and updated mes
 ![image](https://user-images.githubusercontent.com/59969732/205826311-9bf6c894-4190-471c-bf9d-af65382956fd.png)
 
 After giving to right credential admin will be redirected to admin page.
-
+All post will be visible to the students.
 ![ATTEHOME](https://user-images.githubusercontent.com/59969732/205826408-1e78c8b1-350b-43df-bdd3-3b90e0f83358.jpg)
 
-All post will be visible to the students.
+Attendance home page
+
 ![ATTEADD](https://user-images.githubusercontent.com/59969732/205826444-ca48e429-f4c9-4bcc-a0fa-32601420cb14.jpg)
+
+Teacher can add student......
+
 ![ATTEADD1](https://user-images.githubusercontent.com/59969732/205826475-8c0abde1-4e86-49c1-a50d-92ed260cfd87.jpg)
+
+After adding student admin can take the attendance
+
 ![GENERATE](https://user-images.githubusercontent.com/59969732/205826489-99cf784c-2f6c-4400-8640-a11190d7b768.jpg)
 
+After taking attendance admin can generate the attendance pdf and also share and dowmload it
