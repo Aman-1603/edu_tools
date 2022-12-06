@@ -57,27 +57,28 @@ After giving permission It will automatically start to present the screen
 
 ![image](https://user-images.githubusercontent.com/59969732/205826182-20487691-35ab-40a3-bddb-a2a25780f193.png)
 
-After joining the people, the grid view will be shown 
+Teacher home page
 
 ![image](https://user-images.githubusercontent.com/59969732/205826206-f84bfa20-c7c4-42cb-bcd6-3868d7f74125.png)
 
-Here list of buttons is shown by clicking on it list of post and student will be shown
+Admin Module can access the list of the student page
 
 ![image](https://user-images.githubusercontent.com/59969732/205826230-cbbf28f0-1610-48a7-a357-f6c80a3221d4.png)
 
-Admin Module can access the list of the student page 
+Send message screen
+ 
 ![image](https://user-images.githubusercontent.com/59969732/205826266-7ad18177-f152-4d07-a208-4a00c8cf063f.png)
-
-Here admin can post the message to the student and all the message will be visible the student 
-
-![image](https://user-images.githubusercontent.com/59969732/205826279-694adb6d-168c-412c-9dfc-b0f164324112.png)
 
 After posting message to the student wrong message can be update and updated message will be visible to the students
 
-![image](https://user-images.githubusercontent.com/59969732/205826311-9bf6c894-4190-471c-bf9d-af65382956fd.png)
+![image](https://user-images.githubusercontent.com/59969732/205826279-694adb6d-168c-412c-9dfc-b0f164324112.png)
 
 After giving to right credential admin will be redirected to admin page.
+
+![image](https://user-images.githubusercontent.com/59969732/205826311-9bf6c894-4190-471c-bf9d-af65382956fd.png)
+
 All post will be visible to the students.
+
 ![ATTEHOME](https://user-images.githubusercontent.com/59969732/205826408-1e78c8b1-350b-43df-bdd3-3b90e0f83358.jpg)
 
 Attendance home page
