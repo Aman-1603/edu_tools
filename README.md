@@ -36,21 +36,51 @@ Here it is meeting page which is used to create meeting and joining page.
 
 ![image](https://user-images.githubusercontent.com/59969732/205826014-5c47e638-ca35-4735-934d-8e924c2d2b2b.png)
 
-
+If the user creates the meeting, then it is directly redirected to these page 
 
 ![image](https://user-images.githubusercontent.com/59969732/205826034-16d17d97-d128-433c-909e-940c7e94583e.png)
 
+Here user need to enter the 8 no id to enter the meeting
+
 
 ![image](https://user-images.githubusercontent.com/59969732/205826075-f6a2056a-efcb-48c7-8dd3-cded9835c986.png)
+
+Here on clicking on the menu item list of the functionality will be shown user can use one of these functions 
+
 ![image](https://user-images.githubusercontent.com/59969732/205826111-d912d0be-1ae6-4ef8-bb7c-1c1125903945.png)
+
+If user try to present the screen it will ask for the permission user need to grant the permission 
 ![image](https://user-images.githubusercontent.com/59969732/205826154-c70e1c18-3143-40d4-87b6-cb56ea948b02.png)
+
+After giving permission It will automatically start to present the screen
+
+
 ![image](https://user-images.githubusercontent.com/59969732/205826182-20487691-35ab-40a3-bddb-a2a25780f193.png)
+
+After joining the people, the grid view will be shown 
+
 ![image](https://user-images.githubusercontent.com/59969732/205826206-f84bfa20-c7c4-42cb-bcd6-3868d7f74125.png)
+
+Here list of buttons is shown by clicking on it list of post and student will be shown
+
 ![image](https://user-images.githubusercontent.com/59969732/205826230-cbbf28f0-1610-48a7-a357-f6c80a3221d4.png)
+
+Admin Module can access the list of the student page 
 ![image](https://user-images.githubusercontent.com/59969732/205826266-7ad18177-f152-4d07-a208-4a00c8cf063f.png)
+
+Here admin can post the message to the student and all the message will be visible the student 
+
 ![image](https://user-images.githubusercontent.com/59969732/205826279-694adb6d-168c-412c-9dfc-b0f164324112.png)
+
+After posting message to the student wrong message can be update and updated message will be visible to the students
+
 ![image](https://user-images.githubusercontent.com/59969732/205826311-9bf6c894-4190-471c-bf9d-af65382956fd.png)
+
+After giving to right credential admin will be redirected to admin page.
+
 ![ATTEHOME](https://user-images.githubusercontent.com/59969732/205826408-1e78c8b1-350b-43df-bdd3-3b90e0f83358.jpg)
+
+All post will be visible to the students.
 ![ATTEADD](https://user-images.githubusercontent.com/59969732/205826444-ca48e429-f4c9-4bcc-a0fa-32601420cb14.jpg)
 ![ATTEADD1](https://user-images.githubusercontent.com/59969732/205826475-8c0abde1-4e86-49c1-a50d-92ed260cfd87.jpg)
 ![GENERATE](https://user-images.githubusercontent.com/59969732/205826489-99cf784c-2f6c-4400-8640-a11190d7b768.jpg)
